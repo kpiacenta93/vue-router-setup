@@ -2,12 +2,15 @@
 
 <div class="container">
     <div class="seeCalendar">See Calendar</div>
-    <div class="searchApps">Search Apps</div>
+    <router-link to="/SearchApplicationsViews" class="searchApps">Search Apps</router-link>
+    <router-view/>
 </div>
 
 </template>
 
 <script>
+
+import SearchApplicationsViews from './SearchApplicationsViews.vue';
 export default {
 
 

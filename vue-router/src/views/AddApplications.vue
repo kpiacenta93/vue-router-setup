@@ -45,6 +45,9 @@
   
   <script>
   export default {
+ 
+
+    
     data() {
       return {
         jobTitle: "",
@@ -81,3 +84,22 @@
     background-color: rgb(92, 212, 246);
 }
 </style>
+
+<!-- <template>
+    <AddApplications/>
+
+</template>
+
+
+<script>
+import AddApplications from '../components/AddApplications.vue';
+export default {
+    components: {
+        AddApplications
+    }
+}
+</script>
+
+<style>
+
+</style> -->
