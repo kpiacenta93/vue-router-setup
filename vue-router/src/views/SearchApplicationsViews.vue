@@ -77,6 +77,56 @@ export default {
     contactPhoneNumber: "777-888-9999",
     applicationStatus: "In Review",
     notes: "Submitted an online portfolio with the application."
+  },
+  {
+    jobTitle: "UX Designer",
+    company: "Creative Innovations",
+    applicationDate: "2023-04-05",
+    contactPerson: "Mark Anderson",
+    contactEmail: "mark.anderson@example.com",
+    contactPhoneNumber: "777-888-9999",
+    applicationStatus: "In Review",
+    notes: "Submitted an online portfolio with the application."
+  },
+  {
+    jobTitle: "Front-End Developer",
+    company: "Tech Solutions Inc.",
+    applicationDate: "2023-03-15",
+    contactPerson: "Sarah Johnson",
+    contactEmail: "sarah.johnson@example.com",
+    contactPhoneNumber: "555-123-4567",
+    applicationStatus: "Pending",
+    notes: "Completed coding test as part of the application process."
+  },
+  {
+    jobTitle: "Marketing Manager",
+    company: "Digital Marketing Pros",
+    applicationDate: "2023-03-20",
+    contactPerson: "Emily Williams",
+    contactEmail: "emily.williams@example.com",
+    contactPhoneNumber: "444-789-1234",
+    applicationStatus: "Interview Scheduled",
+    notes: "Scheduled for an interview on April 2nd, 2023."
+  },
+  {
+    jobTitle: "Software Engineer",
+    company: "Tech Innovators Ltd.",
+    applicationDate: "2023-03-25",
+    contactPerson: "John Smith",
+    contactEmail: "john.smith@example.com",
+    contactPhoneNumber: "666-555-7777",
+    applicationStatus: "Accepted",
+    notes: "Received a job offer and accepted the position."
+  },
+  {
+    jobTitle: "Data Analyst",
+    company: "Data Insights Corp.",
+    applicationDate: "2023-03-30",
+    contactPerson: "Laura Davis",
+    contactEmail: "laura.davis@example.com",
+    contactPhoneNumber: "777-333-1111",
+    applicationStatus: "Rejected",
+    notes: "Unfortunately, the company decided to move forward with other candidates."
   }
 ]
             
@@ -94,7 +144,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 10px
+    padding-top: 50px
 }
 
 .jobs {
@@ -110,6 +160,7 @@ export default {
     font-size: 0.8rem;
     font-family: monospace;
     width: 1200px;
+    overflow: auto;
     
 }
 
@@ -117,6 +168,7 @@ export default {
     background-color: rgb(92, 212, 246);
     color: black;
     border: 3px solid black;
+    transform: scale(1.6rem);
 }
 
 .title {
@@ -146,5 +198,9 @@ export default {
     display: flex;
     justify-content: center;
     border: 1px solid white;
+}
+
+.jobsList {
+    overflow: auto;
 }
 </style>
