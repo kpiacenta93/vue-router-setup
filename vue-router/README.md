@@ -1,7 +1,21 @@
-# Vue 3 + Vite
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-## Recommended IDE Setup
+Introduction:
+The Application Tracking System is a full-stack web application built to help users track job applications. It allows users to manage and organize their job applications, including details such as job titles, company names, application dates, contact information, application status, and notes. This project is developed using Vue.js for the frontend, a PostgreSQL database for data storage, and a Java backend with a RESTful API.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Features:
+User-friendly interface for adding, editing, and managing job applications.
+Store essential details of each job application.
+Categorize applications by their status (e.g., viewed, in review, not viewed).
+Easily add new job applications with a form.
+View, edit, or delete existing job applications.
+Seamless communication between the frontend and backend via RESTful API.
+
+
+Technologies:
+Frontend: Vue.js, HTML, CSS
+Backend: Java with Spring Boot
+Database: PostgreSQL
+API: RESTful API
+Version Control: Git and GitHub
+Deployment: [Deployment Service]
