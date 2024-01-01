@@ -41,7 +41,7 @@ export default {
     border: 1px solid white;
     width: 400px;
     height: 400px;
-    transition: all;
+    transition: background-color 0.3s;
     font-family: monospace;
     font-size: x-large;
     cursor: pointer;
