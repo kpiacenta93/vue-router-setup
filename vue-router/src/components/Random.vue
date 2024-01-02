@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style>
-.title {
+/* .title {
     font-size: 3rem;
     color: white;
 }
@@ -47,7 +47,7 @@ export default {
 
     .container{
         border: #646cff;
-    }
+    } */
 
   
 

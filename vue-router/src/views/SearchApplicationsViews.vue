@@ -10,7 +10,9 @@
     <button>Submit</button>
     </div>
     </div>
+    <h3> Jobs Applied: {{ jobApplications.length}}</h3>
     <li v-for="(application, index) in jobApplications" :key="index" class="jobs">
+        
     
         <h2 class="title">{{ application.jobTitle }}</h2>
         <p>Company: {{ application.company }}</p>
@@ -130,7 +132,9 @@ export default {
     applicationStatus: "Rejected",
     notes: "Unfortunately, the company decided to move forward with other candidates."
   }
-]
+],
+
+jobsApplied: 0
             
         }
     }
@@ -208,6 +212,7 @@ export default {
 
 .jobsList {
     overflow: auto;
+   
     
 }
 

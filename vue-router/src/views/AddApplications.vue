@@ -85,6 +85,8 @@
 
 .form-group:hover {
     background-color: rgb(92, 212, 246);
+    color:black;
+    
 }
 </style>
 
