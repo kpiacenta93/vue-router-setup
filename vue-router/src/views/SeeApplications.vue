@@ -1,7 +1,7 @@
 <template>
 
 <div class="container">
-    <div class="seeCalendar">See Calendar</div>
+    <router-link class="searchApps" to="/">See Calendar</router-link>
     <router-link to="/SearchApplicationsViews" class="searchApps">Search Apps</router-link>
     <router-view/>
 </div>
@@ -11,6 +11,8 @@
 <script>
 
 import SearchApplicationsViews from './SearchApplicationsViews.vue';
+import Home from './Home.vue';
+
 export default {
 
 
@@ -48,6 +50,8 @@ export default {
     font-family: monospace;
     font-size: x-large;
     cursor: pointer;
+    margin:10px;
+    border-radius: 15px 15px 15px 15px;
     
 }
 

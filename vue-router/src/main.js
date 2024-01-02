@@ -7,6 +7,8 @@ import Home from './views/Home.vue'
 import SeeApplications from './views/SeeApplications.vue'
 import AddApplications from './views/AddApplications.vue'
 import SearchApplicationsViews from './views/SearchApplicationsViews.vue'
+import ContactUs from './views/ContactUs.vue'
+
 
 const routes = [
    {
@@ -31,7 +33,14 @@ const routes = [
     path: "/SearchApplicationsViews",
     name: "SearchApplicationsViews",
     component: SearchApplicationsViews
+   },
+
+   {
+    path: "/ContactUs",
+    name: "ContactUs",
+    component: ContactUs
    }
+
 
 ];
 

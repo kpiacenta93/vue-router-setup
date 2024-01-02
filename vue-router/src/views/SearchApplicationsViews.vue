@@ -2,7 +2,9 @@
 <div class="container">
     
  <div class="jobsList">
+    <h3 class="header-title">Search Job By Text!</h3>
     <div class="input">
+        
     <input type="text" placeholder="Search Job By Text...">
     <div class="button">
     <button>Submit</button>
@@ -19,7 +21,7 @@
         <p>Application Status: {{ application.applicationStatus }}</p>
         <p>Notes: {{ application.notes }}</p>
  
-        <button class="update">Update</button>
+        <button class="update" exact>Update</button>
       </li>
  </div>
 
@@ -154,13 +156,16 @@ export default {
     align-items:center;
     border: 1px solid white;
     padding-top: 5px;
+    margin:15px;
     transition: background-color 0.3s;
     height: 200px;
     padding-left: 5px;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-family: monospace;
     width: 1200px;
     overflow: auto;
+    font-size: 1.1rem;
+    border-radius: 15px 15px 15px 15px;
     
 }
 
@@ -190,7 +195,8 @@ export default {
     justify-content: space-evenly;
     align-items: center;
     margin-bottom: 10px;
-    height: 50px;
+    height: 100px;
+
 
 }
 
@@ -202,5 +208,18 @@ export default {
 
 .jobsList {
     overflow: auto;
+    
+}
+
+.header-title{
+    display: flex;
+    font-family: monospace;
+    justify-content: center;
+    align-items: center;
+    
+    font-size: 2rem;
+    border-radius: 15px 15px 15px 15px;
+    color: black;
+    background-color: rgb(92, 212, 246)
 }
 </style>

@@ -1,0 +1,54 @@
+<template>
+    
+    <div class="container">
+        
+        <form action="mailto:piacentakyle@gmail.com" method="post" enctype="text/plain" class="form">
+            <h5 class="title">Contact Us!</h5>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required class="form">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required class="form">
+
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required class="form">
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" required class="form"></textarea>
+
+        <input type="submit" value="Submit">
+    </form>
+    </div>
+
+</template>
+
+<script>
+export default {
+    name: 'Random'
+
+
+}
+</script>
+
+<style>
+.title {
+    font-size: 3rem;
+    color: white;
+}
+    
+    .form{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        height: 500px;
+        width:800px;
+    }
+
+    .container{
+        border: #646cff;
+    }
+
+  
+
+</style>

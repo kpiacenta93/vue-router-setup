@@ -3,11 +3,11 @@
     <header class="nav-bar">
       <div class="nav-links">
         <router-link to="/">Home|</router-link>
-        <router-link to="/SeeApplications"> See Applications|</router-link>
-        <router-link to="/AddApplications"> Add Applications</router-link>
+        <router-link to="/SeeApplications"> See Applications| </router-link>
+        <router-link to="/AddApplications">  Add Applications</router-link>
       </div>
       <div class="contact-button">
-        <button class="contact">Contact Us!</button>
+        <router-link  to="/ContactUs" class="contact">Contact Us!</router-link>
       </div>
     </header>
     <router-view />
@@ -18,8 +18,15 @@
 
 <script>
 export default {
-
+  methods: {
+  pushToContact(){
+    this.$router.params("/ContactUs")
+  }
 }
+}
+
+
+
 </script>
 
 <style scoped>
@@ -77,13 +84,25 @@ body {
 }
 
 .contact {
-  height: 40px;
+  display: flex;
+  align-items: center;
+  
+  width: 75px;
+  height: 30px;
   border-radius: 5px;
   text-align: center;
   padding: 5px 10px;
   background-color: rgb(92, 212, 246);
   color: whitesmoke;
   font-weight: bold;
+  
+}
+
+.contact:hover {
+  border: #646cff;
+  text-decoration: underline;
+  color: #646cff;
+  transform: scale(1.1);
 }
 </style>
 
