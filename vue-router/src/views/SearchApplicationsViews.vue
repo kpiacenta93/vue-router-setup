@@ -5,15 +5,13 @@
     <h3 class="header-title">Search Job By Text!</h3>
     <div class="input">
         
-    <input type="text" placeholder="Search Job By Text...">
+    <input type="text" placeholder="Search Job By Text..." v-model="searchText">
     <div class="button">
-    <button>Submit</button>
+    <button @click="filteredJobApplications">Submit</button>
     </div>
     </div>
     <h3> Jobs Applied: {{ jobApplications.length}}</h3>
-    <li v-for="(application, index) in jobApplications" :key="index" class="jobs">
-        
-    
+    <li v-if="!showingSearchResults" v-for="application in jobApplications" class="jobs">
         <h2 class="title">{{ application.jobTitle }}</h2>
         <p>Company: {{ application.company }}</p>
         <p>Application Date: {{ application.applicationDate }}</p>
@@ -22,9 +20,18 @@
         <p>Contact Phone Number: {{ application.contactPhoneNumber }}</p>
         <p>Application Status: {{ application.applicationStatus }}</p>
         <p>Notes: {{ application.notes }}</p>
- 
         <button class="update" exact>Update</button>
       </li>
+      <!-- <li v-else="showingSearchResults" v-for="filtered in filteredApplications"></li>
+      <h2 class="title">{{ filtered.jobTitle }}</h2>
+        <p>Company: {{ filtered.company }}</p>
+        <p>Application Date: {{ filtered.applicationDate }}</p>
+        <p>Contact Person: {{ filtered.contactPerson }}</p>
+        <p>Contact Email: {{ filtered.contactEmail }}</p>
+        <p>Contact Phone Number: {{ filtered.contactPhoneNumber }}</p>
+        <p>Application Status: {{ filtered.applicationStatus }}</p>
+        <p>Notes: {{ filtered.notes }}</p>
+        <button class="update" exact>Update</button> -->
  </div>
 
 </div>
@@ -41,6 +48,8 @@ export default {
 
     data() {
         return {
+            searchText: '',
+            showingSearchResults: false,
             jobApplications: [
             {
     jobTitle: "Software Engineer",
@@ -131,15 +140,44 @@ export default {
     contactPhoneNumber: "777-333-1111",
     applicationStatus: "Rejected",
     notes: "Unfortunately, the company decided to move forward with other candidates."
-  }
+  },
+  
 ],
 
-jobsApplied: 0
+filteredApplications: [],
+
+filteredApp: {
+    jobTitle: '',
+    company: '',
+    applicationDate: '',
+    contactPerson: '',
+    contactEmail: '',
+    contactPhoneNumber: '',
+    applicationStatus: '',
+    notes: ''
+  },
+
+  methods: {
+    filteredJobApplications() {
+      if (!this.searchText) {
+        this.showingSearchResults = true;
+        this.filteredApplications = this.jobApplications; 
+      } else {
+        const searchText = this.searchText.toLowerCase();
+        this.filteredApplications = this.jobApplications.filter((application) => {
+          return Object.values(application).some((value) =>
+            String(value).toLowerCase().includes(searchText)
+          );
+        });
+      }
+    },
+  },
+}
             
         }
     }
    
-}
+
 
 </script>
 

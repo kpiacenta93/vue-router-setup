@@ -1,6 +1,6 @@
 <template>
     
-    <div class="container">
+    <div class="form-container">
         
         <form action="mailto:piacentakyle@gmail.com" method="post" enctype="text/plain" class="form">
             <h5 class="title">Contact Us!</h5>
@@ -16,7 +16,7 @@
         <label for="message">Message:</label>
         <textarea id="message" name="message" rows="4" required class="form"></textarea>
 
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" class="submit-button">
     </form>
     </div>
 
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style>
-/* .title {
+.title {
     font-size: 3rem;
     color: white;
 }
@@ -42,12 +42,17 @@ export default {
         align-items: center;
         flex-direction: column;
         height: 500px;
-        width:800px;
+        width:600px;
     }
 
-    .container{
+    /* .form-container{
         border: #646cff;
     } */
+
+    .submit-button {
+        margin-top:10px;
+    }
+
 
   
 
