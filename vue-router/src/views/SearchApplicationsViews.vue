@@ -7,7 +7,7 @@
         
     <input type="text" placeholder="Search Job By Text..." v-model="searchText">
     <div class="button">
-    <button @click="filteredJobApplications">Submit</button>
+    <button @click="filteredJobApplications()">Submit</button>
     </div>
     </div>
     <h3> Jobs Applied: {{ jobApplications.length}}</h3>
@@ -20,7 +20,7 @@
         <p>Contact Phone Number: {{ application.contactPhoneNumber }}</p>
         <p>Application Status: {{ application.applicationStatus }}</p>
         <p>Notes: {{ application.notes }}</p>
-        <button class="update" exact>Update</button>
+        <button class="update-button" exact>Update</button>
       </li>
       <!-- <li v-else="showingSearchResults" v-for="filtered in filteredApplications"></li>
       <h2 class="title">{{ filtered.jobTitle }}</h2>
@@ -160,10 +160,11 @@ filteredApp: {
   methods: {
     filteredJobApplications() {
       if (!this.searchText) {
-        this.showingSearchResults = true;
+        
         this.filteredApplications = this.jobApplications; 
       } else {
         const searchText = this.searchText.toLowerCase();
+        // this.showingSearchResults = true;
         this.filteredApplications = this.jobApplications.filter((application) => {
           return Object.values(application).some((value) =>
             String(value).toLowerCase().includes(searchText)
@@ -223,9 +224,10 @@ filteredApp: {
     text-decoration: underline;
 }
 
-.update {
+.update-button {
   margin-bottom: 8px;
   margin-right: 5px;
+  background-color:  (92, 212, 246)
 }
 
 .update:hover{
