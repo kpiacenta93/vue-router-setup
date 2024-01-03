@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-container">
     <header class="nav-bar">
       <div class="nav-links">
         <router-link to="/">Home|</router-link>
@@ -12,6 +12,7 @@
     </header>
     <router-view />
   </div>
+  <footer class="footer"><span>&copy; App-Tracker 2023</span></footer>
 </template>
 
 
@@ -33,6 +34,7 @@ export default {
 body {
   margin: 0;
   background-color: whitesmoke;
+  
 }
 
 .nav-bar {
@@ -104,5 +106,10 @@ body {
   color: #646cff;
   transform: scale(1.1);
 }
+
+
+
+
+
 </style>
 
