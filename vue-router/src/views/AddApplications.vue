@@ -67,6 +67,8 @@
       submitForm() {
         // Handle form submission here
         console.log("Form submitted with data:", this.$data);
+        alert("application has been submitted!")
+        this.$router.push('/')
       },
     },
   };
