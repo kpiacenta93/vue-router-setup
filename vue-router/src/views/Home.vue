@@ -69,6 +69,7 @@ export default {
   margin: 50px;
   border-radius: 15px;
   transition: transform 0.3s, background-color 0.3s; /* Add transition properties */
+  background-color: rgba(96, 92, 92, 0.251);
 }
 
 .card1:hover, .card2:hover, .card3:hover {
@@ -77,6 +78,7 @@ export default {
   color: black;
   font-size: x-large;
   border: 1px solid black;
+
 }
 
 
