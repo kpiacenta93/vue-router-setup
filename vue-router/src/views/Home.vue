@@ -44,6 +44,7 @@ export default {
     align-items: center;
     font-family: monospace;
     
+    
 }
 
 .home-title {
@@ -65,6 +66,8 @@ export default {
         background-repeat: no-repeat;
         border-radius: 15px 15px 15px 15px;
         height: 700px;
+        border: 1px solid white;
+        box-shadow: white;
         background-image: url('https://images.unsplash.com/photo-1500916434205-0c77489c6cf7?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     }
 
@@ -73,7 +76,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 1px solid black;
+  border: 2px solid rgb(234, 219, 219);
   height: 500px;
   width: 400px;
   padding: 10px;
@@ -109,5 +112,29 @@ export default {
 
  .goal:hover {
     text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .home-cards {
+    flex-direction: column; /* Stack cards vertically */
+  }
+
+  /* Add styles for cards on smaller screens */
+  .card {
+    width: 80%; /* Adjust card width as needed */
+    margin: 10px auto; /* Center align cards */
+  }
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    flex-direction: column; /* Stack cards vertically */
+  }
+
+  /* Add styles for cards on smaller screens */
+  .card {
+    width: 80%; /* Adjust card width as needed */
+    margin: 10px auto; /* Center align cards */
+  }
 }
 </style>
