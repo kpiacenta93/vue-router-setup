@@ -8,6 +8,7 @@ import SeeApplications from './views/SeeApplications.vue'
 import AddApplications from './views/AddApplications.vue'
 import SearchApplicationsViews from './views/SearchApplicationsViews.vue'
 import ContactUs from './views/ContactUs.vue'
+import cors from 'cors';
 
 
 const routes = [

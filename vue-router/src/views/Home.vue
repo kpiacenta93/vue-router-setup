@@ -18,11 +18,6 @@
             <br>
             <p>View and manage your job applications with ease in our app. Access a clear overview of your application history, making it convenient to track your progress.</p>
         </div>
-        <!-- <div class="card2">
-            <p class="goal"><b>Viewing Applications</b> </p>
-            <br>
-            <p>View and manage your job applications with ease in our app. Access a clear overview of your application history, making it convenient to track your progress.</p>
-        </div> -->
     </div>
 </div>
 
