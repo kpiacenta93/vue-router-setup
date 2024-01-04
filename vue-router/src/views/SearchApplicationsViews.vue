@@ -16,7 +16,7 @@
       <li v-for="application in jobApplications"  :key="jobApplications.application_id" class="jobs">
         <h2 class="title">{{ application.job_title }}</h2>
         <p>Company: {{ application.company }}</p>
-        <p>Application Date: {{ application.application_date }}</p>
+        <p>Application Date: {{ formatDate(application.application_date) }}</p>
         <p>Contact Person: {{ application.contact_person }}</p>
         <p>Contact Email: {{ application.contact_email }}</p>
         <p>Contact Phone Number: {{ application.contact_phone }}</p>
@@ -39,6 +39,14 @@ import services from '../../services';
 export default {
 
   methods : {
+    formatDate(dateString) {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  },
+
     getApplicationList() {
     services.getAllApplications()
       .then((response) => {
