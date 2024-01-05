@@ -2,13 +2,13 @@
     <div class="register-container">
       <div class="register">
         <h3 class="register-title">Register:</h3>
-        <label for="username"><b>Username</b></label>
+        <label for="username"><b>Username:</b></label>
         <input type="text" placeholder="Enter Username" name="username" required>
   
-        <label for="email"><b>Email</b></label>
+        <label for="email"><b>Email:</b></label>
         <input type="email" placeholder="Enter Email" name="email" required>
   
-        <label for="password"><b>Password</b></label>
+        <label for="password"><b>Password:</b></label>
         <input type="password" placeholder="Enter Password" name="password" required>
   
         <button type="submit" class="register-button">Register</button>
@@ -36,6 +36,10 @@
     border: 1px solid #ccc;
     border-radius: 15px;
   }
+    .register:hover{
+        border: 3px solid #535bf2;
+    }
+  
   
   input[type="text"],
   input[type="email"],

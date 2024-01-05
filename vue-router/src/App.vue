@@ -329,11 +329,13 @@ body {
 }
 
 .open-menu {
-  margin-top: 10px;
+  margin-top: 0px;
   width: 199px; 
   height: 290px;
-  border-radius: 5px 5px 5px 5px;
-  border: 1px solid black
+  border-radius: 0px 0px 5px 5px;
+  border: 1px solid black;
+  border-top: solid white;
+  border-left: solid white;
 }
 
 .toggleMenu {
