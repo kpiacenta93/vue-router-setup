@@ -63,6 +63,7 @@ export default {
         height: 700px;
         border: 1px solid white;
         box-shadow: white;
+        box-shadow: 2px 2px 2px black; 
         background-image: url('https://images.unsplash.com/photo-1500916434205-0c77489c6cf7?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     }
 
