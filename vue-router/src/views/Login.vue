@@ -3,10 +3,10 @@
     <div class="login-container">
         <div class="login">
             <h3 class="login-title">Login:</h3>
-            <label for="username"><b>Username</b></label>
+            <label for="username"><b>Username:</b></label>
             <input type="text" placeholder="Enter Username" name="username" required>
 
-            <label for="password"><b>Password</b></label>
+            <label for="password"><b>Password:</b></label>
             <input type="password" placeholder="Enter Password" name="password" required>
 
             <button type="submit" class="login-button">Login</button>
@@ -24,7 +24,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 .login {
     width: 500px;
     height: 400px;
@@ -53,9 +53,15 @@ input[type=password] {
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    border-radius: 15px;
 }
 
-login-button {
+input[type=text]:hover,
+input[type=password]:hover {
+    border: 3px solid #535bf2;
+}
+
+.login-button {
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;

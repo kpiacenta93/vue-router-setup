@@ -9,7 +9,7 @@ import AddApplications from './views/AddApplications.vue'
 import SearchApplicationsViews from './views/SearchApplicationsViews.vue'
 import ContactUs from './views/ContactUs.vue'
 import Login from './views/Login.vue'
-
+import Register from './views/Register.vue'
 
 const routes = [
    {
@@ -46,6 +46,12 @@ const routes = [
     path: "/Login",
     name: "login",
     component: Login
+   },
+
+   {
+    path: "/Register",
+    name: "Register",
+    component: Register
    }
 
 

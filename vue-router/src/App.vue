@@ -180,7 +180,7 @@ body {
               <a href="" class="toggleMenu">Job Resources</a>
               <a href="" class="toggleMenu">Job Boards</a>
               <a href="" class="toggleMenu">Blog</a>
-              <a href="" class="toggleMenu">Register</a>
+              <a href="/Register" class="toggleMenu">Register</a>
               <a href="/Login" class="toggleMenu">Login</a>
             </div>
           </div>
