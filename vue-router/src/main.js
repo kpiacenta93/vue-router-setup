@@ -8,7 +8,7 @@ import SeeApplications from './views/SeeApplications.vue'
 import AddApplications from './views/AddApplications.vue'
 import SearchApplicationsViews from './views/SearchApplicationsViews.vue'
 import ContactUs from './views/ContactUs.vue'
-import cors from 'cors';
+import Login from './views/Login.vue'
 
 
 const routes = [
@@ -40,6 +40,12 @@ const routes = [
     path: "/ContactUs",
     name: "ContactUs",
     component: ContactUs
+   },
+
+   {
+    path: "/Login",
+    name: "login",
+    component: Login
    }
 
 
