@@ -1,19 +1,20 @@
 <template>
+  
   <div class="container">
-
+    
     <div class="jobsList">
-      <button @click="getApplicationList()"></button>
+      
       <h3 class="header-title">Search Job By Text!</h3>
       <div class="input">
 
         <input type="text" placeholder="Search Job By Text..." v-model="searchText">
         <div class="button">
-          <button>Submit</button>
+          <button @click="filterApplications()">Submit</button>
           <!-- <button @click="checking()">hey yo</button> -->
         </div>
       </div>
       <h3> Jobs Applied: {{ jobApplications.length }}</h3>
-      <li v-for="application in jobApplications"  :key="jobApplications.application_id" class="jobs">
+      <li v-for="application in (showingSearchResults ? filteredApplications : jobApplications)" :key="application.application_id" class="jobs">
         <h2 class="title">{{ application.job_title }}</h2>
         <p>Company: {{ application.company }}</p>
         <p>Application Date: {{ formatDate(application.application_date) }}</p>
@@ -37,7 +38,6 @@ import services from '../../services';
 
 
 export default {
-
   methods : {
     formatDate(dateString) {
     const date = new Date(dateString);
@@ -46,6 +46,30 @@ export default {
     const day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   },
+  filterApplications() {
+  if (this.searchText) {
+    this.showingSearchResults = true;
+    console.log(this.showingSearchResults);
+    console.log(this.searchText);
+    this.filteredApplications = this.jobApplications.filter((application) => {
+      return Object.values(application).some((value) =>
+        String(value).toLowerCase().includes(this.searchText.toLowerCase())
+      );
+    });
+
+    if (this.filteredApplications.length === 0) {
+      alert('Your search provided no results, try again!');
+      this.searchText = '';
+      this.filterApplications();
+      
+    }
+    this.$router.push('/SearchApplicationsViews')
+  } else {
+    this.showingSearchResults = false;
+    this.filteredApplications = this.jobApplications;
+  }
+},
+
 
     getApplicationList() {
     services.getAllApplications()
@@ -55,8 +79,6 @@ export default {
         this.jobApplications = response.data
 
         console.log(this.jobApplications)
-        // console.log(toRaw(this.jobApplications))
-        // console.log(this.filteredApp[0])
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
@@ -73,7 +95,7 @@ export default {
     return {
       searchText: '',
       showingSearchResults: false,
-      jobApps: [],
+      filteredApplications: [],
       jobApplications: [], 
     }
 

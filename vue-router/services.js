@@ -7,5 +7,9 @@ const url = Axios.create({
 export default {
     getAllApplications(){
         return url.get('/getAllApplications')
+    },
+
+    addNewApplication(application){
+     return url.post('/addApplications', application)
     }
 }
