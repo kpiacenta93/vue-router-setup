@@ -126,7 +126,7 @@ export default {
   padding-left: 5px;
   font-size: 0.7rem;
   font-family: monospace;
-  width: 1200px;
+  width: 1220px;
   overflow: auto;
   font-size: 1.1rem;
   border-radius: 15px 15px 15px 15px;
