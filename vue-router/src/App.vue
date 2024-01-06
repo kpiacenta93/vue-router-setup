@@ -334,7 +334,7 @@ body {
   height: 290px;
   border-radius: 0px 0px 5px 5px;
   border: 1px solid black;
-  border-top: solid white;
+  border-top: 1px solid black;
   border-left: solid white;
 }
 
