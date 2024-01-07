@@ -16,31 +16,20 @@
         <label for="message">Message:</label>
         <textarea id="message" name="message" rows="4" required class="form"></textarea>
 
-        <input type="submit" value="Submit" class="submit-button">
+        <button>submit</button>
     </form>
     </div>
-    <button v-on:click="checking()"></button>
+    
 
 </template>
 
 <script>
 
-import services from '../../services';
 
 export default {
     name: 'Random',
 
     methods: {
-  checking() {
-    services.getAllApplications()
-      .then((response) => {
-       let data = response.data;
-       console.log(data)
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
-  }
 }
 
 
@@ -61,13 +50,14 @@ export default {
         flex-direction: column;
         height: 500px;
         width:600px;
+        border-radius: 15px;
     }
 
     /* .form-container{
         border: #646cff;
     } */
 
-    .submit-button {
+    button {
         margin-top:10px;
     }
 
