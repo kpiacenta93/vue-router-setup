@@ -25,7 +25,7 @@
         <p>Notes: {{ application.notes }}</p>
         <div class="buttons">
         <button @click="findAppId(application)" class="update-button" exact>Update</button>
-        <button class="update-button" exact>delete</button>
+        <button @click="deleteApplicationById(application.application_id)" class="update-button" exact>delete</button>
         </div>
       </li>
     </div>
@@ -90,6 +90,16 @@ export default {
 
   findAppId(application){
     console.log(application.application_id)
+  },
+
+  deleteApplicationById(id){
+    services.deleteApplicationById(id)
+    .then((response) => {
+      console.log(response.data)
+    })
+    alert("application has been succsessfully removed")
+    
+    this.getApplicationList()
   }
 
   },
