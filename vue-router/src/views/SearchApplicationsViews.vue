@@ -23,7 +23,10 @@
         <p>Contact Phone Number: {{ application.contact_phone }}</p>
         <p>Application Status: {{ application.application_status }}</p>
         <p>Notes: {{ application.notes }}</p>
-        <button class="update-button" exact>Update</button>
+        <div class="buttons">
+        <button @click="findAppId(application)" class="update-button" exact>Update</button>
+        <button class="update-button" exact>delete</button>
+        </div>
       </li>
     </div>
 
@@ -85,6 +88,10 @@ export default {
       });
   },
 
+  findAppId(application){
+    console.log(application.application_id)
+  }
+
   },
   beforeMount() {
     this.getApplicationList();
@@ -105,7 +112,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .container {
   display: flex;
   justify-content: center;
@@ -187,5 +194,15 @@ export default {
   border-radius: 15px 15px 15px 15px;
   color: black;
   background-color: rgb(92, 212, 246)
+}
+
+.update-button {
+  border: 1px solid #535bf2;
+  color: grey
+}
+.buttons .update-button:hover {
+  transform: scaleY(1.2);
+  color: white;
+  background-color: black;
 }
 </style>
