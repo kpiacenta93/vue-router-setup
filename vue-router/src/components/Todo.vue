@@ -56,8 +56,13 @@ const finishedPercentage = (finishedCount, totalCount) => {
     if(totalCount === 0) {
         return 0;
     }
+    let percentage = (finishedCount / totalCount) * 100; 
 
-    return (finishedCount / totalCount) * 100; 
+    if(percentage >= 50){
+        alert('You are halfway there keep going!')
+    }
+
+    return percentage; 
 }
 
 watch(name, (newVal) => {
@@ -117,10 +122,14 @@ onMounted(() => {
 * {
     font-family: monospace;
     color: #f0ebeb; /* Text color */
-    background-color: #2e2d2dd2; /* Dark gray background color */
+    /* background-color: #2e2d2dd2; Dark gray background color */
     
 }
-
+.todo-item {
+    /* background-color: #2e2d2d9d; */
+    border-radius: 15px;
+    border: 1px solid black;
+}
 .nameHolder {
     display: flex;
     flex-direction: row;
@@ -138,7 +147,7 @@ onMounted(() => {
     height: 75vh;
     width: 100vh;
     font-family: monospace;
-    background-color: #2e2d2d;
+    background-color: #2e2d2de2;
     border: 1px solid rgb(255, 255, 255);
     border-radius: 15px;
     background-position: center;
@@ -229,9 +238,10 @@ onMounted(() => {
     align-items: center;
     flex-direction: row;
     margin-bottom: 20px;
-    background-color: #2e2d2dc2;
+    background-color: #2e2d2d9e;
     border-radius: 15px;
-    border:1px solid white;
+    height: 200px;
+    /* border: 1px solid #535bf2; */
     margin-top: 5px;
 }
 
@@ -246,6 +256,8 @@ onMounted(() => {
 .title {
     margin-right: 10px;
     border-radius: 15px;
+    height: 100px;
+    background-color: #2e2d2d4d;
 }
 
 .nameHolder {
@@ -267,17 +279,22 @@ onMounted(() => {
     background-color: #2e2d2d;
 }
 
-.greeting {
+.greeting, .title {
+    display: flex;
     width: 500px;
-    height: 400px
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    background-color: #2e2d2db0;
 }
 
 .create-todo {
     width: 500px;
     height: 210px;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     border-radius: 15px;
     margin-bottom: 10px;
+    background-color: #2e2d2d;
 }
 
 .clearTodoButton {
@@ -287,9 +304,22 @@ onMounted(() => {
     height: 50px;
     font-size: 1.5rem;
     transition: background-color 0.5s ease;
+    background-color: #2e2d2dec;
 }
 
 .clearTodoButton:hover {
     transform: scale(1.1);
+}
+
+.list {
+    background-color: #2e2d2d2e;
+}
+
+.todo-list, .nameHolder, .greeting, .create-todo, .list {
+    background-color: inherit; 
+}
+
+.common-background {
+    background-color: rgba(46, 45, 45, 0.95); 
 }
 </style>
