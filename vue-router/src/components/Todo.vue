@@ -49,6 +49,15 @@ const updateFinishedTodos = () => {
 
 const clearTodos = () => {
    todos.value = [];
+};
+
+const finishedPercentage = (finishedCount, totalCount) => {
+
+    if(totalCount === 0) {
+        return 0;
+    }
+
+    return (finishedCount / totalCount) * 100; 
 }
 
 watch(name, (newVal) => {
@@ -83,6 +92,8 @@ onMounted(() => {
       <form action="" @submit.prevent="addTodo">
         <h4>What's on your todo list?</h4>
         <p>Finished Todos: {{ finishedTodos }}</p>
+        <p>Percentage Finished: {{ finishedPercentage(todosDone, todos.length) }}%</p>
+
         <input type="text" class="todo-input" placeholder="e.g. make a video!" v-model="input_content">
         <input type="submit" value="add todo" class="addTodo">
       </form>
@@ -157,6 +168,7 @@ onMounted(() => {
     background-color: rgba(176, 164, 164, 0.354);
     border-radius: 5px 5px 5px 5px;
     color: black;
+    
 }
 
 .todo-item {
@@ -220,7 +232,7 @@ onMounted(() => {
     background-color: #2e2d2dc2;
     border-radius: 15px;
     border:1px solid white;
-    margin-top: 15px;
+    margin-top: 5px;
 }
 
 .greeting-content {
@@ -262,7 +274,7 @@ onMounted(() => {
 
 .create-todo {
     width: 500px;
-    height: 200px;
+    height: 210px;
     border: 1px solid white;
     border-radius: 15px;
     margin-bottom: 10px;
