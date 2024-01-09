@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted, computed, watch } from 'vue';
 
-const todos = ref([]);
+let todos = ref([]);
 const name = ref('');
 const input_content = ref('');
 const input_category = ref(null);
@@ -47,6 +47,10 @@ const updateFinishedTodos = () => {
   finishedTodos.value++;
 };
 
+const clearTodos = () => {
+   todos.value = [];
+}
+
 watch(name, (newVal) => {
   localStorage.setItem('name', newVal);
 });
@@ -70,7 +74,9 @@ onMounted(() => {
         What's up,
       </h2>
       <input type="text" placeholder="name here" class="nameHolder" v-model="name" />
+      
     </section>
+    <button v-on:click="clearTodos" class="clearTodoButton">clear todos</button>
 
     <section class="create-todo">
       <h3>CREATE A TODO</h3>
@@ -100,7 +106,7 @@ onMounted(() => {
 * {
     font-family: monospace;
     color: #f0ebeb; /* Text color */
-    background-color: #2e2d2db5; /* Dark gray background color */
+    background-color: #2e2d2dd2; /* Dark gray background color */
     
 }
 
@@ -172,7 +178,8 @@ onMounted(() => {
     width: 100px;
     margin-top: 10px;
     border-radius: 15px;
-    height: 30px
+    height: 30px;
+    margin-left: 10px;
 }
 
 .addTodo:hover {
@@ -213,6 +220,7 @@ onMounted(() => {
     background-color: #2e2d2dc2;
     border-radius: 15px;
     border:1px solid white;
+    margin-top: 15px;
 }
 
 .greeting-content {
@@ -257,6 +265,19 @@ onMounted(() => {
     height: 200px;
     border: 1px solid white;
     border-radius: 15px;
+    margin-bottom: 10px;
 }
 
+.clearTodoButton {
+    margin-bottom: 35px;
+    width: 50vh;
+    border: 1px solid #535bf2;
+    height: 50px;
+    font-size: 1.5rem;
+    transition: background-color 0.5s ease;
+}
+
+.clearTodoButton:hover {
+    transform: scale(1.1);
+}
 </style>
