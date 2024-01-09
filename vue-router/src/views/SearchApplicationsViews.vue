@@ -98,7 +98,7 @@ export default {
       console.log(response.data)
     })
     alert("application has been succsessfully removed")
-    
+    this.searchText = ''
     this.getApplicationList()
   }
 

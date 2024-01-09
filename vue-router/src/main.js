@@ -10,7 +10,7 @@ import SearchApplicationsViews from './views/SearchApplicationsViews.vue'
 import ContactUs from './views/ContactUs.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
-
+import TodoViews from './views/TodoViews.vue'
 const routes = [
    {
     path: "/",
@@ -52,6 +52,13 @@ const routes = [
     path: "/Register",
     name: "Register",
     component: Register
+   },
+
+   {
+    path: '/TodoViews',
+    name: 'TodoViews',
+    component: TodoViews
+
    }
 
 

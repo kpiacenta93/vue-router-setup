@@ -1,7 +1,7 @@
 <template>
 
 <div class="container">
-    <router-link class="searchApps" to="/">See Calendar</router-link>
+    <router-link class="searchApps" to="/TodoViews">Todo's</router-link>
     <router-link to="/SearchApplicationsViews" class="searchApps">Search Apps</router-link>
     <router-view/>
 </div>
