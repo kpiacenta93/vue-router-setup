@@ -93,7 +93,6 @@ onMounted(() => {
     <button v-on:click="clearTodos" class="clearTodoButton">clear todos</button>
 
     <section class="create-todo">
-      <h3>CREATE A TODO</h3>
       <form action="" @submit.prevent="addTodo">
         <h4>What's on your todo list?</h4>
         <p>Finished Todos: {{ finishedTodos }}</p>
@@ -161,7 +160,7 @@ onMounted(() => {
     text-align: center;
     margin-bottom: 20px;
     background-color: #2e2d2d;
-    border: 1px solid white;
+    
 }
 
 .nameHolder {
@@ -224,6 +223,7 @@ onMounted(() => {
     width: 100vh;
     background-color: #2e2d2dc0;
     border-radius: 15px;
+    
 }
 
 .removeTodo {
@@ -271,7 +271,7 @@ onMounted(() => {
     border: 1px solid grey;
     background-color: #2e2d2d;
     border-radius: 15px;
-    border: 1px solid white;
+    /* border: 1px solid white; */
 }
 
 .list {
