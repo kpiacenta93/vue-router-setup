@@ -51,7 +51,10 @@ const clearTodos = () => {
    todos.value = [];
 };
 
+
+
 const finishedPercentage = (finishedCount, totalCount) => {
+    let alertShown = false;
 
     if(totalCount === 0) {
         return 0;
@@ -60,9 +63,10 @@ const finishedPercentage = (finishedCount, totalCount) => {
 
     if(percentage >= 50){
         alert('You are halfway there keep going!')
+        alertShown = true;
     }
 
-    return percentage; 
+    return percentage.toFixed(3); 
 }
 
 watch(name, (newVal) => {

@@ -4,6 +4,7 @@ import { getAll } from '../db.js';
 import cors from 'cors';
 import { addNewApplication } from '../db.js';
 import { deleteAppById } from '../db.js';
+import bcrypt from 'bcrypt'
 
 const app = express();
 const port = 3000;
@@ -55,6 +56,30 @@ app.delete('/deleteAppById/:id', (req, res) => {
     }
   });
 });
+
+const users = [];
+
+app.get('/Users', (req, res) => {
+   res.json(users)
+});
+
+app.post('/Users', async (req, res) => {
+
+  try{
+    const salt = await bcrypt.genSalt();
+    const hashPass = await bcrypt.hash(req.body.password, salt)
+    console.log(salt)
+    console.log(hashPass)
+
+    const user = {name: req.body.name, password: hashPass}
+    users.push(user);
+    res.status(201).send("success");
+
+  } catch(err) {
+    res.status(400).send("something went wrong")
+  }
+
+})
 
 
 
