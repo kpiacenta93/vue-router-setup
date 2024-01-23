@@ -9,7 +9,24 @@ import bcrypt from 'bcrypt'
 const app = express();
 const port = 3000;
 
+
 app.use(express.json()).use(cors())
+
+app.get('/searchJobs', async (req, res) => {
+  try {
+      const { engine, keyword } = req.query;
+      const apiUrl = `https://serpapi.com/search?engine=google_jobs&engine=${engine}&q=${keyword}`;
+      
+      // Make a GET request to the API using Axios
+      const response = await jobsURL.get(apiUrl);
+
+      // Send the response data back to the client
+      res.status(200).json(response.data);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'An error occurred while fetching data from the API' });
+  }
+});
 
 app.get('/', cors(), (req, res) => {
   res.json({ message: 'Hello from the API!' });

@@ -20,7 +20,9 @@
 </template>
 
 <script>
+import services from '../../services'
 export default {
+   
     data() {
         return {
             inputText: "",
@@ -40,7 +42,7 @@ export default {
                     pay: "$70,000 - $90,000 per year",
                     applicationLink: "https://fakejobapplicationlink.com/marketing-manager"
                 },
-                // Add more job listings here
+                
             ],
         };
     },
@@ -51,7 +53,18 @@ export default {
 
         logInputText(){
             console.log(this.inputText)
+        },
+
+        searchJobs(engine, keyword){
+            services.getSearchedJobs()
+            .then((response) => {
+                console.log(response)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
         }
+
     },
 };
 </script>
