@@ -7,7 +7,7 @@
             {{ isDropDownOpen ? '-' : '+' }}
             <div class="side-bar-menu" :class="{ 'open-menu': isDropDownOpen }">
               <p class="links"><b>LINKS</b></p>
-              <a href="" class="toggleMenu">Search Jobs</a>
+              <a href="/SearchJobs" class="toggleMenu">Search Jobs</a>
               <a href="" class="toggleMenu">Job Boards</a>
               <a href="" class="toggleMenu">Blog</a>
               <a href="/Register" class="toggleMenu">Register</a>
