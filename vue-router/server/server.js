@@ -12,10 +12,10 @@ const port = 3000;
 
 app.use(express.json()).use(cors())
 
-app.get('/searchJobs', async (req, res) => {
+app.get('/proxy', async (req, res) => {
   try {
-      const { engine, keyword } = req.query;
-      const apiUrl = `https://serpapi.com/search?engine=google_jobs&engine=${engine}&q=${keyword}`;
+      const keyword = req.query;
+      const apiUrl = `https://serpapi.com/search?engine=google_jobs&q=${keyword}`;
       
       // Make a GET request to the API using Axios
       const response = await jobsURL.get(apiUrl);

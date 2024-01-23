@@ -1,9 +1,9 @@
 <template>
     <div class="input-container">
         <div class="input-wrapper">
-            <input type="text" placeholder="Search Jobs..." class="SearchJobs" v-model="inputText">
+            <input type="text" placeholder="Search Jobs..." class="SearchJobs" v-model="keyword">
             <button class="button-search" @click="changeTrueToFalse">enter</button>
-            <button v-on:click="logInputText"></button>
+            <button v-on:click="searchJobs(keyword)"></button>
         </div>
         <div class="job-display" v-show="showJobs">
             <div class="job-list">
@@ -25,7 +25,7 @@ export default {
    
     data() {
         return {
-            inputText: "",
+            keyword: "",
             showJobs: false,
             jobListings: [
                 {
@@ -52,10 +52,10 @@ export default {
         },
 
         logInputText(){
-            console.log(this.inputText)
+            console.log(this.keyword)
         },
 
-        searchJobs(engine, keyword){
+        searchJobs(keyword){
             services.getSearchedJobs()
             .then((response) => {
                 console.log(response)

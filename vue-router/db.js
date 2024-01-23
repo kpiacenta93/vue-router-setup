@@ -71,15 +71,6 @@ export const addNewApplication = (applicationData, callback) => {
 
   };
 
-  
-  // export const createNewUser = (user, callback) => {
-  //    const queryString = 'INSERT INTO public.users(username, password_hash, role, application_id) VALUES (1$, 2$, 3$, 4$, 5$);'
-
-  //    const userDetails = [
-      
-  //    ];
-  // }
-
 
  export const deleteAppById = (id) => {
     const queryString = 'DELETE FROM job_applications WHERE application_id = $1;'

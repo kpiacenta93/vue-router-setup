@@ -21,8 +21,7 @@ export default {
         return url.delete(`/deleteAppById/${id}`, id)
     },
 
-    getSearchedJobs(engine, keyword){
-       
-        return jobsURL.get(`/searchJobs?engine=${engine}&q=${keyword}`);
-    }
+    getSearchedJobs(keyword) {
+        return jobsURL.get(`/proxy?engine=google_jobs&q=${keyword}`);
+      }
 }
