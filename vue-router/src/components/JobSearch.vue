@@ -1,8 +1,9 @@
 <template>
     <div class="input-container">
         <div class="input-wrapper">
-            <input type="text" placeholder="Search Jobs..." class="SearchJobs">
+            <input type="text" placeholder="Search Jobs..." class="SearchJobs" v-model="inputText">
             <button class="button-search" @click="changeTrueToFalse">enter</button>
+            <button v-on:click="logInputText"></button>
         </div>
         <div class="job-display" v-show="showJobs">
             <div class="job-list">
@@ -22,6 +23,7 @@
 export default {
     data() {
         return {
+            inputText: "",
             showJobs: false,
             jobListings: [
                 {
@@ -46,6 +48,10 @@ export default {
         changeTrueToFalse() {
             this.showJobs = true;
         },
+
+        logInputText(){
+            console.log(this.inputText)
+        }
     },
 };
 </script>
