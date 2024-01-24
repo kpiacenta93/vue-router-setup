@@ -1,9 +1,9 @@
 <template>
     <div class="input-container">
         <div class="input-wrapper">
-            <input type="text" placeholder="Search Jobs..." class="SearchJobs" v-model="keyword">
+            <input type="text" placeholder="Search Jobs..." class="SearchJobs" v-model="jobTitle">
             <button class="button-search" @click="changeTrueToFalse">enter</button>
-            <button v-on:click="searchJobs(keyword)"></button>
+            <button v-on:click="fetchJobs"></button>
         </div>
         <div class="job-display" v-show="showJobs">
             <div class="job-list">
@@ -21,10 +21,16 @@
 
 <script>
 import services from '../../services'
+import axios from 'axios';
+
+
+
 export default {
    
     data() {
         return {
+
+            JobTitle: "",
             keyword: "",
             showJobs: false,
             jobListings: [
@@ -47,6 +53,34 @@ export default {
         };
     },
     methods: {
+        async fetchJobs() {
+            const options = {
+                method: 'POST',
+                url: 'https://linkedin-jobs-scraper-api.p.rapidapi.com/jobs',
+                headers: {
+                    'content-type': 'application/json',
+                    'X-RapidAPI-Key': '1ee67a8032msh7a0cd1a941ab87bp1c6da8jsn7069f8fbc4be',
+                    'X-RapidAPI-Host': 'linkedin-jobs-scraper-api.p.rapidapi.com'
+                },
+                data: {
+                    title: this.jobTitle, 
+                    location: 'Berlin',
+                    rows: 100
+                }
+            };
+
+            try {
+                const response = await axios.request(options);
+                console.log(response.data)
+                this.jobListings = response.data; 
+                
+            } catch (error) {
+                console.error(error);
+            }
+        },
+    },
+
+
         changeTrueToFalse() {
             this.showJobs = true;
         },
@@ -56,7 +90,8 @@ export default {
         },
 
         searchJobs(keyword){
-            services.getSearchedJobs()
+            
+            services.getSearchedJobs(this.keyword)
             .then((response) => {
                 console.log(response)
             })
@@ -65,8 +100,7 @@ export default {
             })
         }
 
-    },
-};
+    };
 </script>
 
 <style>

@@ -1,7 +1,7 @@
 import Axios from "axios";
-
+const api_key = '3624dfb7cff1a1fe2c79eb613d4dd089ce05cca1be345652b584b545f3f57b5e'
 const url = Axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: 'http://localhost:3000/proxy',
 })
 
 const jobsURL = Axios.create({
@@ -22,6 +22,6 @@ export default {
     },
 
     getSearchedJobs(keyword) {
-        return jobsURL.get(`/proxy?engine=google_jobs&q=${keyword}`);
+        return jobsURL.get(`searchJobs?engine=google_jobs&q=${keyword}&api_key=${api_key}`);
       }
 }
