@@ -1,107 +1,75 @@
 <template>
     <div class="input-container">
-        <div class="input-wrapper">
-            <input type="text" placeholder="Search Jobs..." class="SearchJobs" v-model="jobTitle">
-            <button class="button-search" @click="changeTrueToFalse">enter</button>
-            <button v-on:click="fetchJobs"></button>
+      <div class="input-wrapper">
+        <input type="text" placeholder="Search Jobs..." class="SearchJobs" v-model="jobTitle">
+        <input type="text" placeholder="Location..." class="SearchJobs" v-model="location">
+        <button class="button-search" @click="fetchJobs">Enter</button>
+      </div>
+      <div v-if="isLoading" class="loading">Loading...</div>
+      <div class="job-display" v-if="!isLoading && showJobs">
+        <div class="job-list">
+          <div v-for="(job, index) in jobListings" :key="index" class="jobs">
+            <h2>{{ job.title }}</h2>
+            <h3>{{ job.companyName }}</h3>
+            <p>{{ job.description }}</p>
+            <h2>{{ job.pay }}</h2>
+            <a :href="job.companyUrl" target="_blank">Apply</a>
+          </div>
         </div>
-        <div class="job-display" v-show="showJobs">
-            <div class="job-list">
-                <div v-for="job in jobListings" class="jobs">
-                    <h2>{{ job.company }}</h2>
-                    <h3>{{ job.title }}</h3>
-                    <p>{{ job.description }}</p>
-                    <h2>{{ job.pay }}</h2>
-                    <a :href="job.applicationLink" target="_blank">Apply</a>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-</template>
+  </template>
+  
 
-<script>
-import services from '../../services'
-import axios from 'axios';
-
-
-
-export default {
-   
+  <script>
+  import axios from 'axios';
+//   import { config } from '../../db.js'
+  
+  export default {
     data() {
-        return {
-
-            JobTitle: "",
-            keyword: "",
-            showJobs: false,
-            jobListings: [
-                {
-                    title: "Software Engineer",
-                    company: "TechCorp",
-                    description: "Develop and maintain software applications.",
-                    pay: "$80,000 - $100,000 per year",
-                    applicationLink: "https://fakejobapplicationlink.com/software-engineer"
-                },
-                {
-                    title: "Marketing Manager",
-                    company: "MarketPro",
-                    description: "Manage marketing campaigns and strategy.",
-                    pay: "$70,000 - $90,000 per year",
-                    applicationLink: "https://fakejobapplicationlink.com/marketing-manager"
-                },
-                
-            ],
-        };
+      return {
+       
+        jobTitle: "",
+        location: "",
+        showJobs: false,
+        isLoading: false,
+        jobListings: []
+      };
     },
     methods: {
-        async fetchJobs() {
-            const options = {
-                method: 'POST',
-                url: 'https://linkedin-jobs-scraper-api.p.rapidapi.com/jobs',
-                headers: {
-                    'content-type': 'application/json',
-                    'X-RapidAPI-Key': '1ee67a8032msh7a0cd1a941ab87bp1c6da8jsn7069f8fbc4be',
-                    'X-RapidAPI-Host': 'linkedin-jobs-scraper-api.p.rapidapi.com'
-                },
-                data: {
-                    title: this.jobTitle, 
-                    location: 'Berlin',
-                    rows: 100
-                }
-            };
-
-            try {
-                const response = await axios.request(options);
-                console.log(response.data)
-                this.jobListings = response.data; 
-                
-            } catch (error) {
-                console.error(error);
-            }
-        },
-    },
-
-
-        changeTrueToFalse() {
-            this.showJobs = true;
-        },
-
-        logInputText(){
-            console.log(this.keyword)
-        },
-
-        searchJobs(keyword){
-            
-            services.getSearchedJobs(this.keyword)
-            .then((response) => {
-                console.log(response)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+      async fetchJobs() {
+        const apiKey = process.env.VITE_VUE_APP_RAPID_API_KEY;
+        this.isLoading = true;
+        this.showJobs = false;
+        const options = {
+          method: 'POST',
+          url: 'https://linkedin-jobs-scraper-api.p.rapidapi.com/jobs',
+          headers: {
+            'content-type': 'application/json',
+            'X-RapidAPI-Key': apiKey,
+            'X-RapidAPI-Host': 'linkedin-jobs-scraper-api.p.rapidapi.com'
+          },
+          data: {
+            title: this.jobTitle,
+            location: this.location,
+            rows: 25
+          }
+        };
+  
+        try {
+          const response = await axios.request(options);
+          this.jobListings = response.data; 
+          this.showJobs = true;
+        } catch (error) {
+          console.error(error);
+        } finally {
+          this.isLoading = false;
         }
-
-    };
-</script>
+      },
+    }
+  }
+  </script>
+  
 
 <style>
 .jobs {
@@ -116,6 +84,7 @@ export default {
     align-items: center;
     flex-direction: column;
     margin: 0px;
+    height: 100vh;
 }
 
 .input-wrapper {
@@ -139,12 +108,15 @@ export default {
 }
 
 .job-display {
-    max-height: 300px; /* Set the maximum height for the job listings container */
-    overflow-y: auto; /* Add a vertical scrollbar when content overflows */
+    max-height: 800px;
+    /* Set the maximum height for the job listings container */
+    overflow-y: auto;
+    /* Add a vertical scrollbar when content overflows */
 }
 
 .job-list {
-    padding: 10px; /* Add some padding to the job list container */
+    padding: 10px;
+    /* Add some padding to the job list container */
 }
 </style>
 

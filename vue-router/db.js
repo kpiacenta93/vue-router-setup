@@ -9,6 +9,11 @@ const {Pool} = pkg;
 let DB = process.env.database;
 let Pass = process.env.password;
 
+
+export const config = {
+  rapidApiKey: process.env.VUE_APP_RAPID_API_KEY
+};
+
 const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
