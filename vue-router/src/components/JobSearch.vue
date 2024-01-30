@@ -9,10 +9,13 @@
       <div class="job-display" v-if="!isLoading && showJobs">
         <div class="job-list">
           <div v-for="(job, index) in jobListings" :key="index" class="jobs">
-            <h2>{{ job.title }}</h2>
-            <h3>{{ job.companyName }}</h3>
-            <p>{{ job.description }}</p>
-            <h2>{{ job.pay }}</h2>
+            <h2>Job Title: {{ job.title }}</h2>
+            <br>
+            <h3>Company Name: {{ job.companyName }}</h3>
+            <br>
+            <p><b>Description:</b> {{ job.description }}</p>
+            <h2>Compensation: {{ job.pay }}</h2>
+            <br>
             <a :href="job.companyUrl" target="_blank">Apply</a>
           </div>
         </div>
@@ -24,7 +27,7 @@
   <script>
   import axios from 'axios';
 //   import { config } from '../../db.js'
-  
+
   export default {
     data() {
       return {
@@ -38,7 +41,6 @@
     },
     methods: {
       async fetchJobs() {
-        const apiKey = process.env.VITE_VUE_APP_RAPID_API_KEY;
         this.isLoading = true;
         this.showJobs = false;
         const options = {
@@ -46,7 +48,7 @@
           url: 'https://linkedin-jobs-scraper-api.p.rapidapi.com/jobs',
           headers: {
             'content-type': 'application/json',
-            'X-RapidAPI-Key': apiKey,
+            'X-RapidAPI-Key': import.meta.env.VITE_VUE_APP_RAPID_API_KEY,
             'X-RapidAPI-Host': 'linkedin-jobs-scraper-api.p.rapidapi.com'
           },
           data: {
@@ -54,6 +56,7 @@
             location: this.location,
             rows: 25
           }
+
         };
   
         try {
@@ -65,8 +68,14 @@
         } finally {
           this.isLoading = false;
         }
+
+        if(this.jobListings.length === 0){
+            alert("your query had no results... Please try again!")
+            this.jobTitle = "";
+            this.location = "";
+        }
       },
-    }
+    } 
   }
   </script>
   
@@ -98,6 +107,7 @@
     width: 300px;
     height: 60px;
     border-radius: 15px;
+    margin: 5px
 }
 
 .button-search {

@@ -14,6 +14,7 @@ import TodoViews from './views/TodoViews.vue'
 import SearchJobsViews from './views/SearchJobsViews.vue'
 
 
+
 const routes = [
    {
     path: "/",
