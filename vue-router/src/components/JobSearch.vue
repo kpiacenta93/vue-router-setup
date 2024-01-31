@@ -26,7 +26,6 @@
 
   <script>
   import axios from 'axios';
-//   import { config } from '../../db.js'
 
   export default {
     data() {

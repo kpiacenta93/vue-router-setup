@@ -12,6 +12,7 @@ import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import TodoViews from './views/TodoViews.vue'
 import SearchJobsViews from './views/SearchJobsViews.vue'
+import { store } from './store/index.js'
 
 
 
@@ -80,4 +81,4 @@ const router = createRouter({
 
 
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(router).use(store).mount('#app')
