@@ -12,7 +12,8 @@ import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import TodoViews from './views/TodoViews.vue'
 import SearchJobsViews from './views/SearchJobsViews.vue'
-import { store } from './store/index.js'
+// import { store } from './store/index.js'
+import ForumView from './views/ForumView.vue'
 
 
 
@@ -69,6 +70,12 @@ const routes = [
     path: '/SearchJobs',
     name: 'SearchJobsViews',
     component: SearchJobsViews
+   },
+
+   {
+    path: '/Forum',
+    name: 'ForumView',
+    component: ForumView
    }
 
 
@@ -81,4 +88,4 @@ const router = createRouter({
 
 
 
-createApp(App).use(router).use(store).mount('#app')
+createApp(App).use(router).mount('#app')

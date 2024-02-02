@@ -8,8 +8,8 @@
             <div class="side-bar-menu" :class="{ 'open-menu': isDropDownOpen }">
               <p class="links"><b>LINKS</b></p>
               <a href="/SearchJobs" class="toggleMenu">Search Jobs</a>
-              <a href="" class="toggleMenu">Job Boards</a>
-              <a href="" class="toggleMenu">Blog</a>
+              <!-- <a href="" class="toggleMenu">Job Boards</a> -->
+              <a href="/Forum" class="toggleMenu">Forum</a>
               <a href="/Register" class="toggleMenu">Register</a>
               <a href="/Login" class="toggleMenu">Login</a>
             </div>
