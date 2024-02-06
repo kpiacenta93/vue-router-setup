@@ -4,11 +4,18 @@
         <div class="add-forum">
             <input type="text" placeholder="Add a forum.." class="add-input" v-model="newForumName">
             <button class="forum-submit" v-on:click="addForum">Submit</button>
+            
         </div>
-        <div class="forum-list">
+        <div class="forum-list" v-show="showForumList">
             <div v-for="(forum, index) in forums" :key="forum" class="forum">
                 {{ forum }}  
-                <button v-on:click="deleteForm(index)">Delete forum</button>
+                <button v-on:click="deleteForm(index)" class="forum-button">Delete forum</button>
+                <button class="forum-button">View Forum</button>
+            </div>
+            <div class="full-forum-container" v-show="showFullForm">
+                <div class="full-forum-box">
+
+                </div>
             </div>
         </div>
     </div>
@@ -20,6 +27,8 @@ export default {
     name: 'Forum',
     data() {
         return {
+            showForumList: true,
+            showFullForm: false,
            forums: [],
            newForumName: '',
         }
@@ -64,5 +73,11 @@ export default {
     width: 800px;
     height: 100px;
     border-radius: 15px;
+}
+
+.forum-button{
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
 }
 </style>
