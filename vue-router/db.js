@@ -28,7 +28,7 @@ pool.connect()
     console.log('postgres connected')
 })
 .catch((err) => {
-    console.log("something is fucked up")
+    console.log("something is screwed up")
 });
 
 

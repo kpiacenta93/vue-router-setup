@@ -16,7 +16,7 @@ app.use(express.json()).use(cors({
   allowedHeaders: 'Content-Type,Authorization',
 }));
 
-app.get('/', cors(), (req, res) => {
+app.get('/hello', cors(), (req, res) => {
   res.json({ message: 'Hello from the API!' });
 });
 

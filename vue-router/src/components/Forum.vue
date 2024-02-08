@@ -1,10 +1,15 @@
 <template>
-    <div class="forum-container">
-      <h1 class="title" v-show="showForumList">App-Tracker Forum</h1>
       <div class="add-forum">
-        <input type="text" placeholder="Add a forum.." class="add-input" v-model="newForumName">
+        <h1 class="title" v-show="showForumList">App-Tracker Forum</h1>
+        <input type="text" placeholder="Add a forum.." class="add-input" v-model="newForumName" v-show="showForumList">
         <button class="forum-submit" v-on:click="addForum" v-show="showForumList">Submit</button>
       </div>
+    <div class="forum-container">
+      <!-- <h1 class="title" v-show="showForumList">App-Tracker Forum</h1>
+      <div class="add-forum">
+        <input type="text" placeholder="Add a forum.." class="add-input" v-model="newForumName" v-show="showForumList">
+        <button class="forum-submit" v-on:click="addForum" v-show="showForumList">Submit</button>
+      </div> -->
       <div class="forum-list" v-show="showForumList">
         <div v-for="(forum, index) in forums" :key="forum.name" class="forum">
           {{ forum.name }}  
@@ -17,8 +22,10 @@
           <h2>Forum Name: {{ forums[currentForumIndex]?.name }}</h2>
           <div class="chat-messages">
             <div v-for="message in forums[currentForumIndex]?.messages" :key="message" class="message">
+              <h1 class="Username">User: Joe Blow</h1>
               {{ message.text }}
               <div class="timestamp">{{ message.timestamp }}</div>
+              <a href="" class="reply">Reply</a>
             </div>
           </div>
           <input type="text" v-model="newMessage" placeholder="Type a message..." class="message-input">
@@ -83,12 +90,29 @@
   
 
 <style>
+
+
+.reply {
+  color: rgb(43, 241, 172);
+}
+
+.reply:hover {
+  text-decoration: underline;
+}
+
+
+.Username {
+  font-size: 1rem;
+}
+
+
 .forum-container {
-    margin-bottom: 550px;
+    margin-bottom: 20px;
     position: relative;
+    overflow: auto;
 }
 .title{
-    margin-bottom: 20px;
+    /* margin-bottom: 700px; */
 }
 
 .add-input {
@@ -179,6 +203,14 @@ button:focus {
 
 button:hover {
     background-color: #0056b3; 
+}
+
+.add-forum {
+    /* Removed the large margin-bottom */
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column; /* Added to keep elements aligned vertically */
 }
 
 </style>
