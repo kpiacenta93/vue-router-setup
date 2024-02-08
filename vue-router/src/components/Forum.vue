@@ -5,11 +5,6 @@
         <button class="forum-submit" v-on:click="addForum" v-show="showForumList">Submit</button>
       </div>
     <div class="forum-container">
-      <!-- <h1 class="title" v-show="showForumList">App-Tracker Forum</h1>
-      <div class="add-forum">
-        <input type="text" placeholder="Add a forum.." class="add-input" v-model="newForumName" v-show="showForumList">
-        <button class="forum-submit" v-on:click="addForum" v-show="showForumList">Submit</button>
-      </div> -->
       <div class="forum-list" v-show="showForumList">
         <div v-for="(forum, index) in forums" :key="forum.name" class="forum">
           {{ forum.name }}  
@@ -25,7 +20,7 @@
               <h1 class="Username">User: Joe Blow</h1>
               {{ message.text }}
               <div class="timestamp">{{ message.timestamp }}</div>
-              <a href="" class="reply">Reply</a>
+              <a href="" class="reply" v-on:click="showReplyBox">Reply</a>
             </div>
           </div>
           <input type="text" v-model="newMessage" placeholder="Type a message..." class="message-input">
@@ -41,6 +36,7 @@
     name: 'Forum',
     data() {
       return {
+        showReplyInput: false,
         showForumList: true,
         showFullForm: false,
         forums: [],
@@ -72,7 +68,8 @@
         if (this.newMessage.trim() !== '') {
             const newMsg = {
                 text: this.newMessage,
-                timestamp: new Date().toLocaleString()
+                timestamp: new Date().toLocaleString(),
+                showReplyInput: false
             }
           this.forums[index].messages.push(newMsg);
           this.newMessage = ''; 
@@ -83,6 +80,9 @@
         this.showFullForm = false;
         this.showForumList = true;
       },
+      showReplyBox(){
+      this.showReplyBox = true;
+    }
     }
   }
   </script>
@@ -208,9 +208,19 @@ button:hover {
 .add-forum {
     /* Removed the large margin-bottom */
     display: flex;
-    justify-content: start;
+    /* justify-content: start; */
     align-items: center;
     flex-direction: column; /* Added to keep elements aligned vertically */
+    /* margin-bottom: 500px; */
+    margin-top: 10px;
+}
+
+.full-forum-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+  overflow: auto;
 }
 
 </style>
