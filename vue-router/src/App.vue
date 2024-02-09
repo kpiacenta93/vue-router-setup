@@ -47,6 +47,14 @@ export default {
 </script>
 
 <style scoped>
+.footer{
+  /* position: relative;÷ */
+  display: flex;
+  justify-content:center;
+  align-items: baseline;
+  /* padding-top: 100px; */
+}
+
 body {
   margin: 0;
   background-color: whitesmoke;

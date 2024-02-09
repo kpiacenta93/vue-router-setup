@@ -160,21 +160,23 @@ sendReply(forumIndex, messageIndex) {
   margin: 20px auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 10px;
-  background-color: #f8f9fa;
+  background-color: #a2a6a9dd;
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
   overflow-y: auto;
-  color: black;
+  color: rgb(27, 23, 23);
+  background-image: url('../assets/app-tracker-photo2.png');
+  background-position: center;
 }
 
 .chat-messages {
   width: 90%;
   height: 80%;
   overflow-y: auto;
-  background-color: #a2a6a9;
+  background-color: #a2a6a9dd;
   border: 1px solid #cfd8dc;
   border-radius: 8px;
   padding: 10px;
@@ -182,6 +184,7 @@ sendReply(forumIndex, messageIndex) {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  /* background-image: url('../assets/app-tracker-photo2.png'); */
 }
 
 .message {
@@ -237,5 +240,6 @@ button:hover {
   align-items: center;
   margin-bottom: 100px;
   overflow: auto;
+  /* background-image: url('../assets/app-tracker-photo2.png'); */
 }
 </style>

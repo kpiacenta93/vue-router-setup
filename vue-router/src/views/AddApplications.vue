@@ -88,8 +88,10 @@
 }
 
 .form-group:hover {
-    background-color: rgb(92, 212, 246);
+    background-image: url('../assets/app-tracker-photo2.png');
+    background-position: center;
     color:black;
+    
     
 }
 
