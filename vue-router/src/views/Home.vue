@@ -1,5 +1,5 @@
 <template>
-<header class="app-tracker-header">Welcome to App-Tracker</header>
+<!-- <header class="app-tracker-header">Welcome to App-Tracker</header> -->
 <div class="home-container">
     <!-- <h6 class="home-title">App-Tracker</h6> -->
     <div class="home-cards">
@@ -54,18 +54,20 @@ export default {
     }
 
     .home-cards {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-position: center;
-        background-repeat: no-repeat;
-        border-radius: 15px 15px 15px 15px;
-        height: 700px;
-        border: 1px solid white;
-        box-shadow: white;
-        box-shadow: 2px 2px 2px black; 
-        background-image: url('https://images.unsplash.com/photo-1500916434205-0c77489c6cf7?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover; /* Correct property for making the image cover the area */
+    background-repeat: no-repeat;
+    background-position: center; /* Center the background image */
+    border-radius: 15px;
+    height: 800px;
+    width: 1800px;
+    border: 1px solid white;
+    box-shadow: 2px 2px 2px black;
+    background-image: url('../assets/app-tracker-photo2.png');
+}
+
 
     .card1, .card2, .card3 {
   display: flex;
