@@ -4,7 +4,7 @@
     
     <div class="jobsList">
       
-      <h3 class="header-title">Search Job By Text!</h3>
+      <h3 class="header-title">Search Jobs</h3>
       <div class="input">
 
         <input type="text" placeholder="Search Job By Text..." v-model="searchText">
@@ -144,7 +144,7 @@ export default {
   font-size: 0.7rem;
   font-family: monospace;
   width: 1220px;
-  overflow: auto;
+  overflow: hidden;
   font-size: 1.1rem;
   border-radius: 15px 15px 15px 15px;
 

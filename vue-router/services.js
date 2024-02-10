@@ -1,7 +1,7 @@
 import Axios from "axios";
 const api_key = '3624dfb7cff1a1fe2c79eb613d4dd089ce05cca1be345652b584b545f3f57b5e'
 const url = Axios.create({
-    baseURL: 'http://localhost:3000/proxy',
+    baseURL: 'http://localhost:3000/',
 })
 
 const jobsURL = Axios.create({
