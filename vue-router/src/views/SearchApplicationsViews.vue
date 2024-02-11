@@ -1,39 +1,45 @@
 <template>
-  
   <div class="container">
-    
+
     <div class="jobsList">
-      
-      <h3 class="header-title">Search Jobs</h3>
+
+      <h3 class="header-title" v-show="showFullList">Search Jobs</h3>
       <div class="input">
 
-        <input type="text" placeholder="Search Job By Text..." v-model="searchText">
+        <input type="text" placeholder="Search Job By Text..." v-model="searchText" v-show="showFullList">
         <div class="button">
-          <button @click="filterApplications()">Submit</button>
+          <button @click="filterApplications()" v-show="showFullList">Submit</button>
           <!-- <button @click="checking()">hey yo</button> -->
         </div>
       </div>
-      <h3> Jobs Applied: {{ jobApplications.length }}</h3>
-      <li v-for="application in (showingSearchResults ? filteredApplications : jobApplications)" :key="application.application_id" class="jobs" v-show="showFullList">
+      <h3 v-show="showFullList"> Jobs Applied: {{ jobApplications.length }}</h3>
+      <li v-for="application in (showingSearchResults ? filteredApplications : jobApplications)"
+        :key="application.application_id" class="jobs" v-show="showFullList">
         <h2 class="title">{{ application.job_title }}</h2>
-        <p>Company: {{ application.company }}</p>
+        <!-- <p>Company: {{ application.company }}</p>
         <p>Application Date: {{ formatDate(application.application_date) }}</p>
         <p>Contact Person: {{ application.contact_person }}</p>
         <p>Contact Email: {{ application.contact_email }}</p>
         <p>Contact Phone Number: {{ application.contact_phone }}</p>
         <p>Application Status: {{ application.application_status }}</p>
-        <p>Notes: {{ application.notes }}</p>
+        <p>Notes: {{ application.notes }}</p> -->
         <div class="buttons">
-        <button @click="selectedApplication(application.application_id)" class="update-button" exact>Update</button>
-        <button @click="deleteApplicationById(application.application_id)" class="update-button" exact>delete</button>
-        </div>
-        <div class="single-application-view" v-show="showSingleApp">
-        <p>{{ }}</p>
-        <button @click="showFullListView()">Back To List!</button>
+          <button @click="findAppId(application.application_id)" class="update-button" exact>Update/View</button>
+          <button @click="deleteApplicationById(application.application_id)" class="update-button" exact>delete</button>
         </div>
       </li>
     </div>
-
+    <div class="single-application-view" v-show="showSingleApp">
+      <h2 class="title">{{ selectedApplication.job_title }}</h2>
+      <p>Company: {{ selectedApplication.company }}</p>
+      <p>Application Date: {{ formatDate(selectedApplication.application_date) }}</p>
+      <p>Contact Person: {{ selectedApplication.contact_person }}</p>
+      <p>Contact Email: {{ selectedApplication.contact_email }}</p>
+      <p>Contact Phone Number: {{ selectedApplication.contact_phone }}</p>
+      <p>Application Status: {{ selectedApplication.application_status }}</p>
+      <p>Notes: {{ selectedApplication.notes }}</p>
+      <button @click="getFullListView()">Back To List!</button>
+    </div>
   </div>
 </template>
 
@@ -45,74 +51,75 @@ import services from '../../services';
 
 
 export default {
-  methods : {
+  methods: {
     formatDate(dateString) {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  },
-  filterApplications() {
-  if (this.searchText) {
-    this.showingSearchResults = true;
-    console.log(this.showingSearchResults);
-    console.log(this.searchText);
-    this.filteredApplications = this.jobApplications.filter((application) => {
-      return Object.values(application).some((value) =>
-        String(value).toLowerCase().includes(this.searchText.toLowerCase())
-      );
-    });
+      const date = new Date(dateString);
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    },
+    filterApplications() {
+      if (this.searchText) {
+        this.showingSearchResults = true;
+        console.log(this.showingSearchResults);
+        console.log(this.searchText);
+        this.filteredApplications = this.jobApplications.filter((application) => {
+          return Object.values(application).some((value) =>
+            String(value).toLowerCase().includes(this.searchText.toLowerCase())
+          );
+        });
 
-    if (this.filteredApplications.length === 0) {
-      alert('Your search provided no results, try again!');
-      this.searchText = '';
-      this.filterApplications();
-      
-    }
-    this.$router.push('/SearchApplicationsViews')
-  } else {
-    this.showingSearchResults = false;
-    this.filteredApplications = this.jobApplications;
-  }
-},
+        if (this.filteredApplications.length === 0) {
+          alert('Your search provided no results, try again!');
+          this.searchText = '';
+          this.filterApplications();
+
+        }
+        this.$router.push('/SearchApplicationsViews')
+      } else {
+        this.showingSearchResults = false;
+        this.filteredApplications = this.jobApplications;
+      }
+    },
 
 
     getApplicationList() {
-    services.getAllApplications()
-      .then((response) => {
-        let data = response.data;
-        console.log(data)
-        this.jobApplications = response.data
+      services.getAllApplications()
+        .then((response) => {
+          let data = response.data;
+          console.log(data)
+          this.jobApplications = response.data
 
-        console.log(this.jobApplications)
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
-  },
+          console.log(this.jobApplications)
+        })
+        .catch((error) => {
+          console.error('Error fetching data:', error);
+        });
+    },
 
-  findAppId(applicationID){
-    console.log("this is the current application", applicationID)
-    this.selectedApplicationID = applicationID
-    this.showFullList = false;
-    this.showSingleApp = true;
-  },
+    findAppId(applicationID) {
+      console.log("this is the current application", applicationID)
+      this.selectedApplicationID = applicationID
+      this.showFullList = false;
+      this.showSingleApp = true;
+      console.log("this is current job title: ", applicationID.job_title)
+    },
 
-  deleteApplicationById(id){
-    services.deleteApplicationById(id)
-    .then((response) => {
-      console.log(response.data)
-    })
-    alert("application has been succsessfully removed")
-    this.searchText = ''
-    this.getApplicationList()
-  },
-  getFullListView(){
-    this.selectedApplication = null;
-    this.showFullList = true;
-    this.showSingleApp = false;
-  }
+    deleteApplicationById(id) {
+      services.deleteApplicationById(id)
+        .then((response) => {
+          console.log(response.data)
+        })
+      alert("application has been succsessfully removed")
+      this.searchText = ''
+      this.getApplicationList()
+    },
+    getFullListView() {
+      this.selectedApplication = null;
+      this.showFullList = true;
+      this.showSingleApp = false;
+    }
 
   },
   beforeMount() {
@@ -125,7 +132,7 @@ export default {
       searchText: '',
       showingSearchResults: false,
       filteredApplications: [],
-      jobApplications: [], 
+      jobApplications: [],
       showFullList: true,
       showSingleApp: false,
       selectedApplicationID: null,
@@ -135,7 +142,7 @@ export default {
 
   computed: {
     selectedApplication() {
-      return this.jobApplications.find(app => app.application_id === this.selectedApplication || {} )
+      return this.jobApplications.find(app => app.application_id === this.selectedApplication || {})
     }
   }
 }
@@ -144,13 +151,21 @@ export default {
 
 
 <style scoped>
-
 .single-application-view {
+  border-radius: 15px;
   border: 1px solid white;
-  height: 700px;
-  width: 500px;
-  position: relative;
+  height: 900px;
+  width: 800px;
+  /* position: relative; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  background: linear-gradient(to right, rgb(20, 17, 17), rgb(60, 57, 57));
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
+
 .container {
   display: flex;
   justify-content: center;
@@ -161,11 +176,13 @@ export default {
 .jobs {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   border: 1px solid white;
   padding-top: 5px;
   margin: 15px;
+  background: linear-gradient(to right, rgb(20, 17, 17), rgb(60, 57, 57));
+
   transition: background-color 0.3s;
   height: 200px;
   padding-left: 5px;
@@ -175,11 +192,15 @@ export default {
   overflow: hidden;
   font-size: 1.1rem;
   border-radius: 15px 15px 15px 15px;
+  /* background-image: url('../assets/app-tracker-photo2.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgb(0, 0, 0); */
 
 }
 
 .jobs:hover {
-  background-color: rgb(92, 212, 246);
+  background: rgb(92, 212, 246);
   color: black;
   border: 3px solid black;
   transform: scale(1.6rem);
@@ -238,6 +259,7 @@ export default {
   border: 1px solid #535bf2;
   color: grey
 }
+
 .buttons .update-button:hover {
   transform: scaleY(1.2);
   color: white;
