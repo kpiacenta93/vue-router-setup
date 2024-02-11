@@ -24,11 +24,11 @@
         <p>Application Status: {{ application.application_status }}</p>
         <p>Notes: {{ application.notes }}</p>
         <div class="buttons">
-        <button @click="findAppId(application)" class="update-button" exact>Update</button>
+        <button @click="selectedApplication(application.application_id)" class="update-button" exact>Update</button>
         <button @click="deleteApplicationById(application.application_id)" class="update-button" exact>delete</button>
         </div>
         <div class="single-application-view" v-show="showSingleApp">
-        <p>HELLO WORLD</p>
+        <p>{{ }}</p>
         <button @click="showFullListView()">Back To List!</button>
         </div>
       </li>
@@ -92,9 +92,9 @@ export default {
       });
   },
 
-  findAppId(application){
-    console.log(application.app_id)
-    this.selectedApplication = application
+  findAppId(applicationID){
+    console.log("this is the current application", applicationID)
+    this.selectedApplicationID = applicationID
     this.showFullList = false;
     this.showSingleApp = true;
   },
@@ -128,9 +128,15 @@ export default {
       jobApplications: [], 
       showFullList: true,
       showSingleApp: false,
-      selectedApplication: null,
+      selectedApplicationID: null,
     }
 
+  },
+
+  computed: {
+    selectedApplication() {
+      return this.jobApplications.find(app => app.application_id === this.selectedApplication || {} )
+    }
   }
 }
 
