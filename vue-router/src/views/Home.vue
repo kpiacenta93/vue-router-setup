@@ -2,36 +2,37 @@
   <!-- <header class="app-tracker-header">Welcome to App-Tracker</header> -->
   <div class="home-container">
     <!-- <h6 class="home-title">App-Tracker</h6> -->
-    <div class="home-cards">
+    <div class="home-cards" ref="cardsContainer">
       <div class="card1">
         <p class="goal"><b>Our Goal</b> </p>
         <br>
         <p>Our goal at app tracker is to make your job searching process seamless. We give you the ability to
           effortlessley track the applications you have submitted!</p>
       </div>
-      <div class="card1">
+      <div class="card2">
         <p class="goal"><b>Adding Applications</b> </p>
         <br>
         <p>Adding applications to our database is simple – just fill out a form with job details, and your application is
           securely saved. Stay organized and track your job search effortlessly with our user-friendly app.</p>
       </div>
-      <div class="card2">
-        <p class="goal"><b>Viewing Applications</b> </p>
-        <br>
-        <p>View and manage your job applications with ease in our app. Access a clear overview of your application
-          history, making it convenient to track your progress.</p>
-      </div>
       <div class="card3">
-        <p class="goal"><b>Viewing Applications</b> </p>
+        <p class="goal"><b>Todo Feature</b> </p>
         <br>
-        <p>View and manage your job applications with ease in our app. Access a clear overview of your application
-          history, making it convenient to track your progress.</p>
+        <p>App Tracker's to-do feature offers a focused and intuitive way for job seekers to manage their
+          application-related tasks, ensuring no deadline or follow-up opportunity is missed during the job search
+          journey.</p>
       </div>
       <div class="card4">
-        <p class="goal"><b>Viewing Applications</b> </p>
+        <p class="goal"><b>Job Forum</b> </p>
         <br>
-        <p>View and manage your job applications with ease in our app. Access a clear overview of your application
-          history, making it convenient to track your progress.</p>
+        <p>"App Tracker's job forum empowers users to create or contribute to discussions, sharing insights and advice,
+          fostering a supportive community for navigating the job search process together."</p>
+      </div>
+      <div class="card5">
+        <p class="goal"><b>Search Jobs</b> </p>
+        <br>
+        <p>App Tracker's job search feature enables users to effortlessly search for job openings and provides direct
+          links to applications, streamlining the job discovery and application process.</p>
       </div>
       <button class="arrow left-arrow" @click="moveCards('left')">←</button>
       <button class="arrow right-arrow" @click="moveCards('right')">→</button>
@@ -41,13 +42,14 @@
 
 <script>
 export default {
- 
-  methods : {
+
+  methods: {
     moveCards(direction) {
-      const container = document.querySelector('.home-cards');
+      const container = this.$refs.cardsContainer;
       const cardWidth = container.querySelector('.card1').offsetWidth;
       const scrollAmount = direction === 'left' ? -cardWidth : cardWidth;
       container.scrollLeft += scrollAmount;
+      console.log("button is being pressed")
     }
   }
 
@@ -60,17 +62,19 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow-x: hidden; 
+  overflow-x: auto;
   overflow-y: hidden;
   background-image: url('../assets/app-tracker-photo2.png');
-  background-position: 2% center ;
+  background-position: 2% center;
   background-repeat: no-repeat;
   background-size: cover;
-  width: 110%;
+  width: 108%;
   height: 800px;
   margin-top: 50px;
   border: 1px solid whitesmoke;
   border-radius: 15px;
+  margin-right: 50px;
+  /* white-space: nowrap; */
 }
 
 .home-title {
@@ -87,44 +91,52 @@ export default {
 .home-cards {
   margin-left: 90px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 15px;
   height: 900px;
-  border: 1px solid white;
-  box-shadow: 2px 2px 2px black;
+  /* width: 100%; */
+  /* border: 1px solid white; */
+  /* box-shadow: 2px 2px 2px black; */
   /* background-image: url('../assets/app-tracker-photo2.png'); */
   margin-top: 45px;
+  margin-right: 90px;
+  scroll-behavior: smooth;
+  /* white-space: nowrap; */
 }
 
 
 .card1,
 .card2,
 .card3,
-.card4{
+.card4,
+.card5 {
   display: flex;
-  justify-content: contain;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   border: 2px solid rgb(234, 219, 219);
   height: 500px;
   width: 370px;
   padding: 10px;
-  margin: 50px;
+  margin: 25px;
   border-radius: 15px;
   transition: transform 0.3s, background-color 0.3s;
   /* Add transition properties */
-  background-color: rgba(51, 49, 49, 0.897);
-  margin-left: 0px;
+  background-color: rgba(51, 49, 49, 0.777);
+  padding-right: 30px;
+  border-right: 25px;
 }
 
 .card1:hover,
 .card2:hover,
-.card3:hover {
-  transform: scale(1.2);
+.card3:hover,
+.card4:hover,
+.card5:hover {
+  transform: scale(1.1);
   background-color: rgba(92, 213, 246, 0.762);
   color: black;
   font-size: x-large;
@@ -156,7 +168,7 @@ export default {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: transparent;
+  /* background: transparent; */
   border: none;
   cursor: pointer;
   font-size: 24px;
@@ -204,6 +216,4 @@ export default {
     /* Center align cards */
   }
 }
-
-
 </style>
