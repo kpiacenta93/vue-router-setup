@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       isDropDownOpen: false,
-      // currentUser: this.$store.state.currentUser
+      
     };
   },
   methods: {
@@ -47,7 +47,7 @@ export default {
 
   computed: {
     currentUser(){
-      return this.$store.state.currentUser
+      return this.$store.state.user
       
     }
   }

@@ -62,7 +62,7 @@ export default {
       if(this.$store.state.currentUser.length === 0){
         console.log("there is no current user")
       }
-      return this.$store.state.currentUser
+      return this.$store.state.user
       
     }
   }
@@ -108,6 +108,7 @@ export default {
   justify-content: center;
   align-items: center;
   background-size: cover;
+  /* flex-direction: column; */
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 15px;

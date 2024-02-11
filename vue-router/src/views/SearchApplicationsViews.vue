@@ -14,7 +14,7 @@
         </div>
       </div>
       <h3> Jobs Applied: {{ jobApplications.length }}</h3>
-      <li v-for="application in (showingSearchResults ? filteredApplications : jobApplications)" :key="application.application_id" class="jobs">
+      <li v-for="application in (showingSearchResults ? filteredApplications : jobApplications)" :key="application.application_id" class="jobs" v-show="showFullList">
         <h2 class="title">{{ application.job_title }}</h2>
         <p>Company: {{ application.company }}</p>
         <p>Application Date: {{ formatDate(application.application_date) }}</p>
@@ -26,6 +26,10 @@
         <div class="buttons">
         <button @click="findAppId(application)" class="update-button" exact>Update</button>
         <button @click="deleteApplicationById(application.application_id)" class="update-button" exact>delete</button>
+        </div>
+        <div class="single-application-view" v-show="showSingleApp">
+        <p>HELLO WORLD</p>
+        <button @click="showFullListView()">Back To List!</button>
         </div>
       </li>
     </div>
@@ -89,7 +93,10 @@ export default {
   },
 
   findAppId(application){
-    console.log(application.application_id)
+    console.log(application.app_id)
+    this.selectedApplication = application
+    this.showFullList = false;
+    this.showSingleApp = true;
   },
 
   deleteApplicationById(id){
@@ -100,6 +107,11 @@ export default {
     alert("application has been succsessfully removed")
     this.searchText = ''
     this.getApplicationList()
+  },
+  getFullListView(){
+    this.selectedApplication = null;
+    this.showFullList = true;
+    this.showSingleApp = false;
   }
 
   },
@@ -114,6 +126,9 @@ export default {
       showingSearchResults: false,
       filteredApplications: [],
       jobApplications: [], 
+      showFullList: true,
+      showSingleApp: false,
+      selectedApplication: null,
     }
 
   }
@@ -123,6 +138,13 @@ export default {
 
 
 <style scoped>
+
+.single-application-view {
+  border: 1px solid white;
+  height: 700px;
+  width: 500px;
+  position: relative;
+}
 .container {
   display: flex;
   justify-content: center;
