@@ -14,6 +14,7 @@ import TodoViews from './views/TodoViews.vue'
 import SearchJobsViews from './views/SearchJobsViews.vue'
 // import { store } from './store/index.js'
 import ForumView from './views/ForumView.vue'
+import store from './store/index'
 
 
 
@@ -88,4 +89,4 @@ const router = createRouter({
 
 
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(router).use(store).mount('#app')

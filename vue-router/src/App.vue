@@ -33,6 +33,7 @@ export default {
   data() {
     return {
       isDropDownOpen: false,
+      // currentUser: this.$store.state.currentUser
     };
   },
   methods: {
@@ -43,6 +44,13 @@ export default {
       this.isDropDownOpen = !this.isDropDownOpen;
     },
   },
+
+  computed: {
+    currentUser(){
+      return this.$store.state.currentUser
+      
+    }
+  }
 };
 </script>
 

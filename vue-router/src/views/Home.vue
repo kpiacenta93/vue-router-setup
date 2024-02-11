@@ -42,6 +42,10 @@
 
 <script>
 export default {
+  data(){
+    return {
+    }
+  },
 
   methods: {
     moveCards(direction) {
@@ -50,6 +54,16 @@ export default {
       const scrollAmount = direction === 'left' ? -cardWidth : cardWidth;
       container.scrollLeft += scrollAmount;
       console.log("button is being pressed")
+    }
+  },
+
+  computed: {
+    currentUser(){
+      if(this.$store.state.currentUser.length === 0){
+        console.log("there is no current user")
+      }
+      return this.$store.state.currentUser
+      
     }
   }
 
