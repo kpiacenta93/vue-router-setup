@@ -4,6 +4,7 @@ import { getAll } from '../db.js';
 import cors from 'cors';
 import { addNewApplication } from '../db.js';
 import { deleteAppById } from '../db.js';
+import { getAppById } from '../db.js';
 import bcrypt from 'bcrypt'
 import axios from 'axios';
 const app = express();
@@ -62,6 +63,23 @@ app.delete('/deleteAppById/:id', (req, res) => {
   });
 });
 
+app.get('/getAppById/:id', (req, res) => {
+  const application_id = req.params.id;
+  
+  getAppById(application_id, (err, result) => {
+    if(err){
+      res.setHeader('Content-Type', 'application/json')
+      res.status(400).json({error: err.message})
+    }else {
+      res.status(200).json(result)
+    }
+  })
+
+})
+
+
+
+// user log in and validation section
 const users = [];
 
 app.get('/Users', (req, res) => {
