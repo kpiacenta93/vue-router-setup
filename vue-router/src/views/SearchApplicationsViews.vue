@@ -30,7 +30,7 @@
       </li>
     </div>
     <div class="single-application-view" v-show="showSingleApp">
-      <h2 class="title">{{ selectedApplication.job_title }}</h2>
+      <h2 class="title">{{ jobApplication.job_title }}</h2>
       <p>Company: {{ selectedApplication.company }}</p>
       <p>Application Date: {{ formatDate(selectedApplication.application_date) }}</p>
       <p>Contact Person: {{ selectedApplication.contact_person }}</p>
@@ -100,7 +100,7 @@ export default {
 
     findAppId(applicationID) {
       console.log("this is the current application", applicationID)
-      this.selectedApplicationID = applicationID
+      this.getApplication(applicationID)
       this.showFullList = false;
       this.showSingleApp = true;
       console.log("this is current job title: ", applicationID.job_title)
@@ -115,6 +115,21 @@ export default {
       this.searchText = ''
       this.getApplicationList()
     },
+
+    getApplication(id){
+      services.getAppById(id)
+      .then((response) => {
+        let data = response.data
+        console.log(data)
+        this.jobApplication = data
+        console.log(this.jobApplication)
+      })
+      .catch((error) => {
+        console.log("couldnt retrieve application", error)
+      })
+    },
+
+    //end of servies methods ----------------------------------------------------------
     getFullListView() {
       this.selectedApplication = null;
       this.showFullList = true;
@@ -133,6 +148,7 @@ export default {
       showingSearchResults: false,
       filteredApplications: [],
       jobApplications: [],
+      jobApplication: null ,
       showFullList: true,
       showSingleApp: false,
       selectedApplicationID: null,

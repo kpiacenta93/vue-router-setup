@@ -5,7 +5,7 @@ const url = Axios.create({
 })
 
 const jobsURL = Axios.create({
-    baseURL: "https://serpapi.com/search?engine=google_jobs",
+    // baseURL: "https://serpapi.com/search?engine=google_jobs",
 })
 
 export default {
@@ -21,7 +21,11 @@ export default {
         return url.delete(`/deleteAppById/${id}`, id)
     },
 
-    getSearchedJobs(keyword) {
-        return jobsURL.get(`searchJobs?engine=google_jobs&q=${keyword}&api_key=${api_key}`);
+    // getSearchedJobs(keyword) {
+    //     return jobsURL.get(`searchJobs?engine=google_jobs&q=${keyword}&api_key=${api_key}`);
+    //   },
+
+      getAppById(id){
+        return url.get(`/getAppById/${id}`, id)
       }
 }

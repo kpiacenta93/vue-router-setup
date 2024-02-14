@@ -71,6 +71,7 @@ app.get('/getAppById/:id', (req, res) => {
       res.setHeader('Content-Type', 'application/json')
       res.status(400).json({error: err.message})
     }else {
+      console.log("this is response: " . res)
       res.status(200).json(result)
     }
   })
