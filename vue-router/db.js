@@ -87,6 +87,18 @@ export const addNewApplication = (applicationData, callback) => {
     .catch((error) => {
       console.log('there was an error deleting application', error)
     })
+ };
+
+ export const getAppById = (id) => {
+  const queryString = 'DELETE FROM job_applications WHERE application_id = $1;'
+
+  pool.query(queryString, [id])
+  .then(() => {
+    console.log(`application ${id} retrieved successfully`)
+  })
+  .catch((error) => {
+    console.log('there was an error deleting specific application',error)
+  })
  }
   
 
