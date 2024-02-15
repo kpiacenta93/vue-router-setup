@@ -24,13 +24,13 @@
         <p>Application Status: {{ application.application_status }}</p>
         <p>Notes: {{ application.notes }}</p> -->
         <div class="buttons">
-          <button @click="findAppId(application.application_id)" class="update-button" exact>Update/View</button>
+          <button @click="getApplication(application.application_id)" class="update-button" exact>Update/View</button>
           <button @click="deleteApplicationById(application.application_id)" class="update-button" exact>delete</button>
         </div>
       </li>
     </div>
-    <div class="single-application-view" v-show="showSingleApp">
-      <h2 class="title">{{ jobApplication.job_title }}</h2>
+    <!-- <div class="single-application-view" v-show="showSingleApp">
+      <h2 class="title">{{ selectedApplication.job_title }}</h2>
       <p>Company: {{ selectedApplication.company }}</p>
       <p>Application Date: {{ formatDate(selectedApplication.application_date) }}</p>
       <p>Contact Person: {{ selectedApplication.contact_person }}</p>
@@ -39,7 +39,7 @@
       <p>Application Status: {{ selectedApplication.application_status }}</p>
       <p>Notes: {{ selectedApplication.notes }}</p>
       <button @click="getFullListView()">Back To List!</button>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -99,11 +99,10 @@ export default {
     },
 
     findAppId(applicationID) {
-      console.log("this is the current application", applicationID)
       this.getApplication(applicationID)
       this.showFullList = false;
       this.showSingleApp = true;
-      console.log("this is current job title: ", applicationID.job_title)
+      // console.log("this is current job title: ", applicationID.job_title)
     },
 
     deleteApplicationById(id) {
@@ -120,9 +119,10 @@ export default {
       services.getAppById(id)
       .then((response) => {
         let data = response.data
-        console.log(data)
-        this.jobApplication = data
-        console.log(this.jobApplication)
+        console.log("this is data coming from getApplication fn: ", data)
+        console.log("this is the current application", id)
+        this.selectedApplication = data
+        // console.log(this.selectedApplication)
       })
       .catch((error) => {
         console.log("couldnt retrieve application", error)
@@ -148,7 +148,7 @@ export default {
       showingSearchResults: false,
       filteredApplications: [],
       jobApplications: [],
-      jobApplication: null ,
+      selectedApplication: null ,
       showFullList: true,
       showSingleApp: false,
       selectedApplicationID: null,
@@ -157,9 +157,9 @@ export default {
   },
 
   computed: {
-    selectedApplication() {
-      return this.jobApplications.find(app => app.application_id === this.selectedApplication || {})
-    }
+    // selectedApplication() {
+    //   return this.jobApplications.find(app => app.application_id === this.selectedApplication || {})
+    // }
   }
 }
 
