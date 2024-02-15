@@ -1,20 +1,20 @@
 <template>
   <div class="container">
 
-    <div class="jobsList">
+    <div class="jobsList" v-show="showFullList">
 
-      <h3 class="header-title" v-show="showFullList">Search Jobs</h3>
+      <h3 class="header-title" >Search Jobs</h3>
       <div class="input">
 
-        <input type="text" placeholder="Search Job By Text..." v-model="searchText" v-show="showFullList">
+        <input type="text" placeholder="Search Job By Text..." v-model="searchText">
         <div class="button">
-          <button @click="filterApplications()" v-show="showFullList">Submit</button>
+          <button @click="filterApplications()">Submit</button>
           <!-- <button @click="checking()">hey yo</button> -->
         </div>
       </div>
-      <h3 v-show="showFullList"> Jobs Applied: {{ jobApplications.length }}</h3>
+      <h3> Jobs Applied: {{ jobApplications.length }}</h3>
       <li v-for="application in (showingSearchResults ? filteredApplications : jobApplications)"
-        :key="application.application_id" class="jobs" v-show="showFullList">
+        :key="application.application_id" class="jobs" >
         <h2 class="title">{{ application.job_title }}</h2>
         <!-- <p>Company: {{ application.company }}</p>
         <p>Application Date: {{ formatDate(application.application_date) }}</p>
@@ -24,12 +24,12 @@
         <p>Application Status: {{ application.application_status }}</p>
         <p>Notes: {{ application.notes }}</p> -->
         <div class="buttons">
-          <button @click="getApplication(application.application_id)" class="update-button" exact>Update/View</button>
+          <button @click="getApplicationById(application.application_id)" class="update-button" exact>Update/View</button>
           <button @click="deleteApplicationById(application.application_id)" class="update-button" exact>delete</button>
         </div>
       </li>
     </div>
-    <!-- <div class="single-application-view" v-show="showSingleApp">
+    <div class="single-application-view" v-show="showSingleApp">
       <h2 class="title">{{ selectedApplication.job_title }}</h2>
       <p>Company: {{ selectedApplication.company }}</p>
       <p>Application Date: {{ formatDate(selectedApplication.application_date) }}</p>
@@ -39,7 +39,7 @@
       <p>Application Status: {{ selectedApplication.application_status }}</p>
       <p>Notes: {{ selectedApplication.notes }}</p>
       <button @click="getFullListView()">Back To List!</button>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -98,12 +98,6 @@ export default {
         });
     },
 
-    findAppId(applicationID) {
-      this.getApplication(applicationID)
-      this.showFullList = false;
-      this.showSingleApp = true;
-      // console.log("this is current job title: ", applicationID.job_title)
-    },
 
     deleteApplicationById(id) {
       services.deleteApplicationById(id)
@@ -115,25 +109,32 @@ export default {
       this.getApplicationList()
     },
 
-    getApplication(id){
+    getApplicationById(id) {
       services.getAppById(id)
-      .then((response) => {
-        let data = response.data
-        console.log("this is data coming from getApplication fn: ", data)
-        console.log("this is the current application", id)
-        this.selectedApplication = data
-        // console.log(this.selectedApplication)
-      })
-      .catch((error) => {
-        console.log("couldnt retrieve application", error)
-      })
+        .then((response) => {
+          let application = response.data[0];
+          this.showFullList = false;
+          this.showSingleApp = true;
+          this.selectedApplication = application;
+          console.log("this is the response: ", response.data)
+
+          console.log("selected application: ", this.selectedApplication);
+          console.log("this is the selectedApp: ", {
+            name: this.selectedApplication.job_title,
+            company: this.selectedApplication.company
+          });
+        })
+        .catch((error) => {
+          console.error("Couldn't retrieve application", error);
+        });
     },
+
 
     //end of servies methods ----------------------------------------------------------
     getFullListView() {
-      this.selectedApplication = null;
       this.showFullList = true;
       this.showSingleApp = false;
+      this.selectedApplication = [];
     }
 
   },
@@ -148,7 +149,7 @@ export default {
       showingSearchResults: false,
       filteredApplications: [],
       jobApplications: [],
-      selectedApplication: null ,
+      selectedApplication: [],
       showFullList: true,
       showSingleApp: false,
       selectedApplicationID: null,
