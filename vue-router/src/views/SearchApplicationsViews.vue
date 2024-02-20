@@ -38,6 +38,7 @@
       <p>Contact Phone Number: {{ selectedApplication.contact_phone }}</p>
       <p>Application Status: {{ selectedApplication.application_status }}</p>
       <p>Notes: {{ selectedApplication.notes }}</p>
+      <input type="text" placeholder="Add New Notes.. "> <br> <button class="update-notes"> Update Notes</button>
       <button @click="getFullListView()">Back To List!</button>
     </div>
   </div>
@@ -168,6 +169,14 @@ export default {
 
 
 <style scoped>
+
+.update-notes {
+  display: flex;
+  justify-content:flex-end;
+  align-items: center;
+  flex-direction: row;
+}
+
 .single-application-view {
   border-radius: 15px;
   border: 1px solid white;
