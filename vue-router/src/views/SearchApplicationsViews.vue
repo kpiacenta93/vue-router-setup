@@ -30,17 +30,22 @@
       </li>
     </div>
     <div class="single-application-view" v-show="showSingleApp">
-      <h2 class="title">{{ selectedApplication.job_title }}</h2>
-      <p>Company: {{ selectedApplication.company }}</p>
-      <p>Application Date: {{ formatDate(selectedApplication.application_date) }}</p>
-      <p>Contact Person: {{ selectedApplication.contact_person }}</p>
-      <p>Contact Email: {{ selectedApplication.contact_email }}</p>
-      <p>Contact Phone Number: {{ selectedApplication.contact_phone }}</p>
-      <p>Application Status: {{ selectedApplication.application_status }}</p>
-      <p>Notes: {{ selectedApplication.notes }}</p>
-      <input type="text" placeholder="Add New Notes.. "> <br> <button class="update-notes"> Update Notes</button>
-      <button @click="getFullListView()">Back To List!</button>
-    </div>
+  <h2 class="title">{{ selectedApplication.job_title }}</h2>
+  <p>Company: {{ selectedApplication.company }}</p>
+  <p>Application Date: {{ formatDate(selectedApplication.application_date) }}</p>
+  <p>Contact Person: {{ selectedApplication.contact_person }}</p>
+  <p>Contact Email: {{ selectedApplication.contact_email }}</p>
+  <p>Contact Phone Number: {{ selectedApplication.contact_phone }}</p>
+  <p>Application Status: {{ selectedApplication.application_status }}</p>
+  <p>Notes: {{ selectedApplication.notes }}</p>
+  <button v-if="updateNotes" v-on:click="toggleUpdateNotes()">Click to update new notes</button>
+  <div class="action-buttons" v-if="!updateNotes">
+    <input type="text" placeholder="Add New Notes..">
+    <button class="update-notes" v-on:click="toggleUpdateNotes()">Update Notes</button>
+  </div>
+  <button @click="getFullListView()">Back To List!</button>
+</div>
+
   </div>
 </template>
 
@@ -53,6 +58,10 @@ import services from '../../services';
 
 export default {
   methods: {
+    toggleUpdateNotes() {
+        this.updateNotes = !this.updateNotes; 
+    },
+    
     formatDate(dateString) {
       const date = new Date(dateString);
       const year = date.getFullYear();
@@ -129,8 +138,6 @@ export default {
           console.error("Couldn't retrieve application", error);
         });
     },
-
-
     //end of servies methods ----------------------------------------------------------
     getFullListView() {
       this.showFullList = true;
@@ -146,6 +153,8 @@ export default {
 
   data() {
     return {
+      updateNotes: true,
+      updateNotesView: false,
       searchText: '',
       showingSearchResults: false,
       filteredApplications: [],
@@ -170,12 +179,12 @@ export default {
 
 <style scoped>
 
-.update-notes {
+.action-buttons {
   display: flex;
-  justify-content:flex-end;
   align-items: center;
-  flex-direction: row;
+  gap: 10px; 
 }
+
 
 .single-application-view {
   border-radius: 15px;
