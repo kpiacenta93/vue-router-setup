@@ -37,6 +37,16 @@
   <p>Contact Email: {{ selectedApplication.contact_email }}</p>
   <p>Contact Phone Number: {{ selectedApplication.contact_phone }}</p>
   <p>Application Status: {{ selectedApplication.application_status }}</p>
+  <div class="action-buttons" v-if="!updateNotes">
+    <label for="options">Choose a new status:</label>
+    <select id="options" name="options">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+        <option value="option4">Option 4</option>
+    </select>
+    <button class="update-notes" v-on:click="toggleUpdateNotes()">Update Status</button>
+  </div>
   <p>Notes: {{ selectedApplication.notes }}</p>
   <button v-if="updateNotes" v-on:click="toggleUpdateNotes()">Click to update new notes</button>
   <div class="action-buttons" v-if="!updateNotes">
