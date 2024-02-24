@@ -40,15 +40,15 @@
   <div class="action-buttons" v-if="!updateNotes">
     <label for="options">Choose a new status:</label>
     <select id="options" name="options">
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
-        <option value="option4">Option 4</option>
+        <option value="option1">In Review</option>
+        <option value="option2">Application Viewed</option>
+        <option value="option3">Under Consideration</option>
+        <option value="option4">Offer Exteneded</option>
     </select>
     <button class="update-notes" v-on:click="toggleUpdateNotes()">Update Status</button>
   </div>
   <p>Notes: {{ selectedApplication.notes }}</p>
-  <button v-if="updateNotes" v-on:click="toggleUpdateNotes()">Click to update new notes</button>
+  <button v-if="updateNotes" v-on:click="toggleUpdateNotes()">Update Notes/Application Status</button>
   <div class="action-buttons" v-if="!updateNotes">
     <input type="text" placeholder="Add New Notes..">
     <button class="update-notes" v-on:click="toggleUpdateNotes()">Update Notes</button>
