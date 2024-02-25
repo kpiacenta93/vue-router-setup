@@ -1,0 +1,18 @@
+<template>
+
+
+</template>
+
+<script>
+export default {
+    name: 'UserAccount'
+
+
+}
+
+</script>
+
+<style>
+
+
+</style>

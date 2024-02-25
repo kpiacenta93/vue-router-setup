@@ -15,6 +15,7 @@ import SearchJobsViews from './views/SearchJobsViews.vue'
 // import { store } from './store/index.js'
 import ForumView from './views/ForumView.vue'
 import store from './store/index'
+import UserAccountViews from './views/UserAccountViews.vue'
 
 
 
@@ -77,6 +78,11 @@ const routes = [
     path: '/Forum',
     name: 'ForumView',
     component: ForumView
+   },
+   {
+    path: '/UserAccountViews',
+    name: 'UserAccountViews',
+    component: UserAccountViews
    }
 
 
