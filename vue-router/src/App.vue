@@ -20,6 +20,7 @@
         <router-link to="/AddApplications">Add Applications</router-link>
       </div>
       <div class="contact-button">
+        <a href="/UserAccount" class="contact-button">Hello Joe Blow, Look at your account!</a>
         <router-link to="/ContactUs" class="contact">Contact Us!</router-link>
       </div>
     </header>
@@ -115,6 +116,8 @@ body {
   display: flex;
   align-items: center;
   font-family: monospace;
+  margin: 5px;
+  border: 5px;
 }
 
 .contact {
