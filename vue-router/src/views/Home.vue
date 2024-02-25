@@ -88,6 +88,7 @@ export default {
   border: 1px solid whitesmoke;
   border-radius: 15px;
   margin-right: 250px;
+  color: whitesmoke;
 }
 
 .home-title {
@@ -113,8 +114,8 @@ export default {
   border-radius: 15px;
   height: 900px;
   /* width: 100%; */
-  /* border: 1px solid white; */
-  /* box-shadow: 2px 2px 2px black; */
+  border: 1px solid white;
+  box-shadow: 2px 2px 2px black;
   /* background-image: url('../assets/app-tracker-photo2.png'); */
   margin-top: 45px;
   margin-right: 90px;
@@ -140,9 +141,10 @@ export default {
   border-radius: 15px;
   transition: transform 0.3s, background-color 0.3s;
   /* Add transition properties */
-  background-color: rgba(51, 49, 49, 0.777);
+  background-color: rgba(51, 49, 49, 0.866);
   padding-right: 30px;
   border-right: 25px;
+  color: whitesmoke;
 }
 
 .card1:hover,
