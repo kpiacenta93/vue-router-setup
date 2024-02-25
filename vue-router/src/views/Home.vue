@@ -34,8 +34,8 @@
         <p>App Tracker's job search feature enables users to effortlessly search for job openings and provides direct
           links to applications, streamlining the job discovery and application process.</p>
       </div>
-      <button class="arrow left-arrow" @click="moveCards('left')">←</button>
-      <button class="arrow right-arrow" @click="moveCards('right')">→</button>
+      <!-- <button class="arrow left-arrow" @click="moveCards('left')">←</button>
+      <button class="arrow right-arrow" @click="moveCards('right')">→</button> -->
     </div>
   </div>
 </template>
@@ -82,13 +82,12 @@ export default {
   background-position: 2% center;
   background-repeat: no-repeat;
   background-size: cover;
-  width: 108%;
-  height: 800px;
+  width: 1380px;
+  height: 850px;
   margin-top: 50px;
   border: 1px solid whitesmoke;
   border-radius: 15px;
-  margin-right: 50px;
-  /* white-space: nowrap; */
+  margin-right: 250px;
 }
 
 .home-title {

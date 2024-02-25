@@ -38,7 +38,7 @@
   <p>Contact Phone Number: {{ selectedApplication.contact_phone }}</p>
   <p>Application Status: {{ selectedApplication.application_status }}</p>
   <div class="action-buttons" v-if="!updateNotes">
-    <label for="options">Choose a new status:</label>
+    <label for="options">Choose a new application status:</label>
     <select id="options" name="options">
         <option value="option1">In Review</option>
         <option value="option2">Application Viewed</option>

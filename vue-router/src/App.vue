@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container">
+  <!-- <div class="main-container"> -->
     <header class="nav-bar">
       <div class="nav-links">
         <aside>
@@ -24,7 +24,7 @@
       </div>
     </header>
     <router-view />
-  </div>
+  <!-- </div> -->
   <footer class="footer"><span>&copy; App-Tracker 2023</span></footer>
 </template>
 
@@ -55,6 +55,13 @@ export default {
 </script>
 
 <style scoped>
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 200vh; */
+}
 .footer{
   /* position: relative;÷ */
   display: flex;
