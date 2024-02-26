@@ -1,6 +1,6 @@
 <template>
     <div class="user-account-container">
-      <h1>Welcome, User!</h1>
+      <h1>Welcome to your account dashboard, Joe Blow!</h1>
       <div class="grid-container">
         <div class="left-section">
           <h2>Profile Information</h2>
@@ -39,6 +39,12 @@
   <style scoped>
   .user-account-container {
     text-align: center;
+    border: 1px solid white;
+    background-image: url('../assets/app-tracker-photo2.png');
+    width: 1500px;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
   }
   
   .grid-container {
@@ -46,10 +52,11 @@
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     padding: 20px;
+    /* justify-content: center; */
   }
   
   .left-section, .right-section {
-    background-color: #f5f5f5;
+    background-color: #92cdcf;
     padding: 20px;
     border-radius: 8px;
   }
