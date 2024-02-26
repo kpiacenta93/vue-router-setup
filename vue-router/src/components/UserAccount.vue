@@ -14,6 +14,18 @@
           <p>Account Status: Active</p>
           <p>Membership Level: Premium</p>
         </div>
+        <div class="left-section">
+          <h2>Application Info:</h2>
+          <p>Jobs Applied: 800</p>
+          <p>Interviews # : 10</p>
+          <p>Viewd Applications: 34</p>
+        </div>
+        <div class="right-section">
+          <h2>Account Settings</h2>
+          <p>Newsletter: Subscribed</p>
+          <p>Account Status: Active</p>
+          <p>Membership Level: Premium</p>
+        </div>
       </div>
     </div>
   </template>
