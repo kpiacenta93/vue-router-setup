@@ -16,7 +16,7 @@
         </div>
         <div class="left-section">
           <h2>Application Info:</h2>
-          <p>Jobs Applied: 800</p>
+          <p>Jobs Applied: {{ jobsAppliedNum }}</p>
           <p>Interviews # : 10</p>
           <p>Viewd Applications: 34</p>
         </div>
@@ -28,11 +28,43 @@
         </div>
       </div>
     </div>
+    <button v-on:click="getApplicationList">hello</button>
   </template>
   
   <script>
+  import services from '../../services';
+
   export default {
-      name: 'UserAccount'
+      name: 'UserAccount',
+
+      data(){
+        return {
+            jobsAppliedNum: 0,
+
+        }
+      },
+
+      methods: {
+        getApplicationList() {
+      services.getAllApplications()
+        .then((response) => {
+          let data = response.data;
+          console.log(data)
+          this.jobApplications = response.data
+          this.jobsAppliedNum = this.jobApplications.length;
+          console.log("this is the number for applied jobs", this.jobsAppliedNum)
+          console.log(this.jobApplications)
+          return this.jobsAppliedNum
+        })
+        .catch((error) => {
+          console.error('Error fetching data:', error);
+        });
+    },
+
+    beforeMount() {
+    this.getApplicationList();
+  }
+      }
   }
   </script>
   
