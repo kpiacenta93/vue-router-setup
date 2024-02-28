@@ -39,9 +39,9 @@
   <style scoped>
   .user-account-container {
     text-align: center;
-    border: 1px solid white;
-    background-image: url('../assets/app-tracker-photo2.png');
-    width: 1500px;
+    /* border: 1px solid white; */
+    /* background-image: url('../assets/app-tracker-photo2.png'); */
+    /* width: 1500px; */
     /* display: flex; */
     /* justify-content: center; */
     /* align-items: center; */
