@@ -18,7 +18,7 @@
           <h2>Application Info:</h2>
           <p>Jobs Applied: {{ jobsAppliedNum }}</p>
           <p>Interviews # : 10</p>
-          <p>Viewd Applications: 34</p>
+          <p>Viewd Applications: {{ viewedAppNum }}</p>
         </div>
         <div class="right-section">
           <h2>Account Settings</h2>
@@ -40,9 +40,15 @@
       data(){
         return {
             jobsAppliedNum: 0,
+            viewedAppNum: 0,
+            jobApplications: [],
 
         }
       },
+
+    beforeMount() {
+    this.getApplicationList();
+  },
 
       methods: {
         getApplicationList() {
@@ -54,6 +60,8 @@
           this.jobsAppliedNum = this.jobApplications.length;
           console.log("this is the number for applied jobs", this.jobsAppliedNum)
           console.log(this.jobApplications)
+          this.viewedAppNum = this.jobApplications.filter(app => app.application_status === "viewed").length
+          console.log("this is viewed app number", this.viewedAppNum)
           return this.jobsAppliedNum
         })
         .catch((error) => {
@@ -61,9 +69,6 @@
         });
     },
 
-    beforeMount() {
-    this.getApplicationList();
-  }
       }
   }
   </script>
