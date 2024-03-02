@@ -105,6 +105,22 @@ export const addNewApplication = (applicationData, callback) => {
     });
 }
 
+export const updateAppById = (id, callback) => {
+  const queryString = "UPDATE application_status WHERE application_id = $1"
+
+  pool.query(queryString, [id])
+    .then((res) => {
+      console.log(`Application ${id} retrieved successfully`);
+      console.log('Query result: ', res)
+      console.log("Application data: ", res.rows);
+      callback(null, res.rows); 
+    })
+    .catch((error) => {
+      console.error('There was an error retrieving the specific application:', error);
+      callback(error, null); 
+    });
+}
+
   
 
  
