@@ -61,7 +61,7 @@
 
 <script>
 
-import { updateAppById } from '../../db';
+// import { updateAppById } from '../../db';
 import services from '../../services';
 
 
@@ -150,14 +150,15 @@ export default {
         });
     },
 
-    // updateAppStatusById(id) {
-    //  services.updateAppById.then((response) => {
-    //   console.log("this is the response from update status", response.data)
-    //  })
-    //  .catch((error) => {
-    //   console.log("could not update status properly", error)
-    //  })
-    // },
+    updateAppStatusById(id) {
+     services.updateStatusAppById(id)
+     .then((response) => {
+      console.log("this is the response from update status", response.data)
+     })
+     .catch((error) => {
+      console.log("could not update status properly", error)
+     })
+    },
 
     
     //end of servies methods ----------------------------------------------------------
