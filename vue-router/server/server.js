@@ -5,6 +5,7 @@ import cors from 'cors';
 import { addNewApplication } from '../db.js';
 import { deleteAppById } from '../db.js';
 import { getAppById } from '../db.js';
+import { updateAppById } from '../db.js';
 import bcrypt from 'bcrypt'
 import axios from 'axios';
 const app = express();
@@ -119,7 +120,19 @@ app.post('/Users/Login', async (req, res) => {
     } catch {
       res.status(500).send()
     }
-})
+});
+
+app.put('/UpdateStatusById/:id', async (req, res) => {
+   const newStatus = req.body;
+
+   getAppById(newStatus, (err, result) => {
+    if(err){
+      res.status(400).json(err)
+    } else {
+      res.status(200).json(res)
+    }
+   })
+} )
 
 
 
