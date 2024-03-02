@@ -31,7 +31,7 @@ app.get('/getAllApplications', (req, res) => {
     if (err) {
       res.status(422).send(err);
     } else {
-      
+
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(result)
     }
@@ -46,7 +46,7 @@ app.post('/addApplications', (req, res) => {
       res.status(400).json({ error: err.message });
     } else {
       res.setHeader('Content-Type', 'application/json');
-      res.status(200).json(result); 
+      res.status(200).json(result);
     }
   });
 });
@@ -66,13 +66,13 @@ app.delete('/deleteAppById/:id', (req, res) => {
 
 app.get('/getAppById/:id', (req, res) => {
   const application_id = req.params.id;
-  
+
   getAppById(application_id, (err, result) => {
-    if(err){
+    if (err) {
       res.setHeader('Content-Type', 'application/json')
-      res.status(400).json({error: err.message})
-    }else {
-      console.log("this is response: " . res)
+      res.status(400).json({ error: err.message })
+    } else {
+      console.log("this is response: ".res)
       res.status(200).json(result)
     }
   })
@@ -85,54 +85,55 @@ app.get('/getAppById/:id', (req, res) => {
 const users = [];
 
 app.get('/Users', (req, res) => {
-   res.json(users)
+  res.json(users)
 });
 
 app.post('/Users', async (req, res) => {
 
-  try{
+  try {
     const salt = await bcrypt.genSalt();
     const hashPass = await bcrypt.hash(req.body.password, salt);
     console.log(password)
 
-    const user = {name: req.body.name, password: hashPass}
+    const user = { name: req.body.name, password: hashPass }
     users.push(user);
     res.status(201).send("success");
 
-  } catch(err) {
+  } catch (err) {
     res.status(400).send("something went wrong")
   }
 
 });
 
 app.post('/Users/Login', async (req, res) => {
-    const user = users.find(user => user.name = req.body.name);
+  const user = users.find(user => user.name = req.body.name);
 
-    if(user == null){
-      return res.status(400).send("cant find user");
+  if (user == null) {
+    return res.status(400).send("cant find user");
+  }
+  try {
+    if (await bcrypt.compare(req.body.password, user.password)) {
+      res.send("succsess")
+    } else {
+      res.send('not allowed')
     }
-    try{
-      if(await bcrypt.compare(req.body.password, user.password)){
-        res.send("succsess")
-      } else {
-        res.send('not allowed')
-      }
-    } catch {
-      res.status(500).send()
-    }
+  } catch {
+    res.status(500).send()
+  }
 });
 
 app.put('/UpdateStatusById/:id', async (req, res) => {
-   const newStatus = req.body;
+  const { id } = req.params;
+  const newStatus = req.body;
 
-   getAppById(newStatus, (err, result) => {
-    if(err){
-      res.status(400).json(err)
+  updateAppById(id, newStatus, (err, result) => {
+    if (err) {
+      res.status(400).json({ error: "There was an error updating the app.", details: err });
     } else {
       res.status(200).json(res)
     }
-   })
-} )
+  })
+})
 
 
 
