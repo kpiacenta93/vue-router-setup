@@ -27,5 +27,9 @@ export default {
 
       getAppById(id){
         return url.get(`/getAppById/${id}`, id)
+      },
+
+      updateAppByid(id){
+        return url.put(`/updateAppById/${id}`, id)
       }
 }
