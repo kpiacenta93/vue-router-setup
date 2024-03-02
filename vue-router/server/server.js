@@ -133,7 +133,7 @@ app.put('/UpdateStatusById/:id', async (req, res) => {
       res.status(200).json(res)
     }
   })
-})
+});
 
 
 

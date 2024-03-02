@@ -21,15 +21,11 @@ export default {
         return url.delete(`/deleteAppById/${id}`, id)
     },
 
-    // getSearchedJobs(keyword) {
-    //     return jobsURL.get(`searchJobs?engine=google_jobs&q=${keyword}&api_key=${api_key}`);
-    //   },
-
       getAppById(id){
         return url.get(`/getAppById/${id}`, id)
       },
 
-      updateAppByid(id){
+      updateAppById(id){
         return url.put(`/updateAppById/${id}`, id)
       }
 }
