@@ -168,6 +168,7 @@ export default {
     //end of servies methods ----------------------------------------------------------
     getFullListView() {
       this.showFullList = true;
+      this.updateNotes = !this.updateNotes;
       this.showSingleApp = false;
       this.selectedApplication = [];
     }
