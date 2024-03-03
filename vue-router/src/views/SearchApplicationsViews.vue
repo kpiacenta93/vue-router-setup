@@ -45,7 +45,7 @@
         <option value="option3">Under Consideration</option>
         <option value="option4">Offer Exteneded</option>
     </select>
-    <button class="update-notes" v-on:click="toggleUpdateNotes()">Update Status</button>
+    <button class="update-notes" v-on:click="updateAppStatusById(selectedApplication.application_id)">Update Status</button>
   </div>
   <p>Notes: {{ selectedApplication.notes }}</p>
   <button v-if="updateNotes" v-on:click="toggleUpdateNotes()">Update Notes/Application Status</button>
@@ -152,8 +152,10 @@ export default {
 
     updateAppStatusById(id) {
      services.updateStatusAppById(id)
-     .then((response) => {
-      console.log("this is the response from update status", response.data)
+     .then(response => {
+      console.log(this.newStatus = response.data) 
+      // this.newStatus = response.data;
+      console.log("this is the response from update status", this.newStatus)
      })
      .catch((error) => {
       console.log("could not update status properly", error)
@@ -186,6 +188,7 @@ export default {
       showFullList: true,
       showSingleApp: false,
       selectedApplicationID: null,
+      newStatus: '',
     }
 
   },

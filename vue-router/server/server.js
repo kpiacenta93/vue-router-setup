@@ -122,18 +122,19 @@ app.post('/Users/Login', async (req, res) => {
   }
 });
 
-// app.put('/UpdateStatusById/:id', async (req, res) => {
-//   const { id } = req.params;
-//   const newStatus = req.body;
+app.put('/UpdateStatusById/:id', async (req, res) => {
+  const { id } = req.params;
+  const newStatus = req.body;
 
-//   updateAppById(id, newStatus, (err, result) => {
-//     if (err) {
-//       res.status(400).json({ error: "There was an error updating the app.", details: err });
-//     } else {
-//       res.status(200).json(res)
-//     }
-//   })
-// });
+  updateAppById(id, newStatus, (err, result) => {
+    if (err) {
+      res.status(400).json({ error: "There was an error updating the app.", details: err });
+    } else {
+      res.setHeader('Content-Type', 'application/json')
+      res.status(200).json(res)
+    }
+  })
+});
 
 
 
