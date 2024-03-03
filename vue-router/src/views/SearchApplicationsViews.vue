@@ -3,7 +3,7 @@
 
     <div class="jobsList" v-show="showFullList">
 
-      <h3 class="header-title" >Search Jobs</h3>
+      <h3 class="header-title">Search Jobs</h3>
       <div class="input">
 
         <input type="text" placeholder="Search Job By Text..." v-model="searchText">
@@ -14,7 +14,7 @@
       </div>
       <h3> Jobs Applied: {{ jobApplications.length }}</h3>
       <li v-for="application in (showingSearchResults ? filteredApplications : jobApplications)"
-        :key="application.application_id" class="jobs" >
+        :key="application.application_id" class="jobs">
         <h2 class="title">{{ application.job_title }}</h2>
         <!-- <p>Company: {{ application.company }}</p>
         <p>Application Date: {{ formatDate(application.application_date) }}</p>
@@ -30,31 +30,32 @@
       </li>
     </div>
     <div class="single-application-view" v-show="showSingleApp">
-  <h2 class="title">{{ selectedApplication.job_title }}</h2>
-  <p>Company: {{ selectedApplication.company }}</p>
-  <p>Application Date: {{ formatDate(selectedApplication.application_date) }}</p>
-  <p>Contact Person: {{ selectedApplication.contact_person }}</p>
-  <p>Contact Email: {{ selectedApplication.contact_email }}</p>
-  <p>Contact Phone Number: {{ selectedApplication.contact_phone }}</p>
-  <p>Application Status: {{ selectedApplication.application_status }}</p>
-  <div class="action-buttons" v-if="!updateNotes">
-    <label for="options">Choose a new application status:</label>
-    <select id="options" name="options">
-        <option value="option1">In Review</option>
-        <option value="option2">Application Viewed</option>
-        <option value="option3">Under Consideration</option>
-        <option value="option4">Offer Exteneded</option>
-    </select>
-    <button class="update-notes" v-on:click="updateAppStatusById(selectedApplication.application_id)">Update Status</button>
-  </div>
-  <p>Notes: {{ selectedApplication.notes }}</p>
-  <button v-if="updateNotes" v-on:click="toggleUpdateNotes()">Update Notes/Application Status</button>
-  <div class="action-buttons" v-if="!updateNotes">
-    <input type="text" placeholder="Add New Notes..">
-    <button class="update-notes" v-on:click="toggleUpdateNotes()">Update Notes</button>
-  </div>
-  <button @click="getFullListView()">Back To List!</button>
-</div>
+      <h2 class="title">{{ selectedApplication.job_title }}</h2>
+      <p>Company: {{ selectedApplication.company }}</p>
+      <p>Application Date: {{ formatDate(selectedApplication.application_date) }}</p>
+      <p>Contact Person: {{ selectedApplication.contact_person }}</p>
+      <p>Contact Email: {{ selectedApplication.contact_email }}</p>
+      <p>Contact Phone Number: {{ selectedApplication.contact_phone }}</p>
+      <p>Application Status: {{ selectedApplication.application_status }}</p>
+      <div class="action-buttons" v-if="!updateNotes">
+        <label for="options">Choose a new application status:</label>
+        <select id="options" name="options">
+          <option value="option1">In Review</option>
+          <option value="option2">Application Viewed</option>
+          <option value="option3">Under Consideration</option>
+          <option value="option4">Offer Exteneded</option>
+        </select>
+        <button class="update-notes"
+          v-on:click="updateAppStatusById(selectedApplication.application_id, newStatus)">Update Status</button>
+      </div>
+      <p>Notes: {{ selectedApplication.notes }}</p>
+      <button v-if="updateNotes" v-on:click="toggleUpdateNotes()">Update Notes/Application Status</button>
+      <div class="action-buttons" v-if="!updateNotes">
+        <input type="text" placeholder="Add New Notes..">
+        <button class="update-notes" v-on:click="toggleUpdateNotes()">Update Notes</button>
+      </div>
+      <button @click="getFullListView()">Back To List!</button>
+    </div>
 
   </div>
 </template>
@@ -70,9 +71,9 @@ import services from '../../services';
 export default {
   methods: {
     toggleUpdateNotes() {
-        this.updateNotes = !this.updateNotes; 
+      this.updateNotes = !this.updateNotes;
     },
-    
+
     formatDate(dateString) {
       const date = new Date(dateString);
       const year = date.getFullYear();
@@ -150,19 +151,20 @@ export default {
         });
     },
 
-    updateAppStatusById(id) {
-     services.updateStatusAppById(id)
-     .then(response => {
-      console.log(this.newStatus = response.data) 
-      // this.newStatus = response.data;
-      console.log("this is the response from update status", this.newStatus)
-     })
-     .catch((error) => {
-      console.log("could not update status properly", error)
-     })
+    updateAppStatusById(id, newStatus) {
+
+      services.updateStatusAppById(id, newStatus)
+        .then(response => {
+          console.log(this.selectedApplication.application_status = response.data)
+          console.log("this is the response from update status", this.selectedApplication.application_status)
+        })
+        .catch((error) => {
+          console.log("could not update status properly", error)
+        })
     },
 
-    
+
+
     //end of servies methods ----------------------------------------------------------
     getFullListView() {
       this.showFullList = true;
@@ -204,11 +206,10 @@ export default {
 
 
 <style scoped>
-
 .action-buttons {
   display: flex;
   align-items: center;
-  gap: 10px; 
+  gap: 10px;
 }
 
 

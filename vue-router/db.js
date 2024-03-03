@@ -105,22 +105,25 @@ export const addNewApplication = (applicationData, callback) => {
     });
 }
 
-export const updateAppById = (id, callback) => {
-  const queryString = "UPDATE application_status SET status = $2 WHERE application_id = $1";
+export const updateAppById = (id, newStatus, callback) => {
+  const queryString = "UPDATE public.job_applications SET application_status = $2 WHERE application_id = $1;";
 
+  console.log("ID:", id, "New Status:", newStatus);
+  console.log("this is the new status: ", newStatus); // Assuming newStatus is a string
 
-  pool.query(queryString, [id])
+  pool.query(queryString, [id, newStatus])
     .then((res) => {
-      console.log(`Application ${id} retrieved successfully`);
-      console.log('Query result: ', res)
-      console.log("Application data: ", res.rows);
-      callback(null, res.rows); 
+      console.log(`Application ${id} updated successfully`);
+      console.log("Rows affected: ", res.rowCount);
+      callback(null, res.rowCount); 
     })
     .catch((error) => {
-      console.error('There was an error retrieving the specific application:', error);
-      // callback(error, null); 
+      console.error('There was an error updating the specific application:', error.stack);
+      callback(error, null); 
     });
 }
+
+
 
   
 
