@@ -109,7 +109,7 @@ export const updateAppById = (id, newStatus, callback) => {
   const queryString = "UPDATE public.job_applications SET application_status = $2 WHERE application_id = $1;";
 
   console.log("ID:", id, "New Status:", newStatus);
-  console.log("this is the new status: ", newStatus); // Assuming newStatus is a string
+  console.log("this is the new status: ", newStatus); 
 
   pool.query(queryString, [id, newStatus])
     .then((res) => {
