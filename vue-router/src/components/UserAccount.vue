@@ -28,7 +28,7 @@
         </div>
       </div>
     </div>
-    <button v-on:click="getApplicationList">hello</button>
+    <button v-on:click="fetchData"> this is where the title goes: {{ title }}</button>
   </template>
   
   <script>
@@ -39,6 +39,7 @@
 
       data(){
         return {
+            title: '',
             jobsAppliedNum: 0,
             viewedAppNum: 0,
             jobApplications: [],
@@ -68,6 +69,19 @@
           console.error('Error fetching data:', error);
         });
     },
+
+   async fetchData() {
+  try {
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+    const data = await response.json(); // Convert the response to JSON
+     this.title = data.title
+    console.log(data);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+
 
       }
   }
