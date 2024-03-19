@@ -9,6 +9,12 @@ export default{
     components: {
         Random
     },
+    
+    data() {
+        return {
+            
+        }
+    }
 
 }
 

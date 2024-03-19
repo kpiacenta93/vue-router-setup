@@ -13,7 +13,7 @@ const port = 3000;
 
 
 app.use(express.json()).use(cors({
-  origin: 'http://localhost:5173', // Change this to match your frontend URL
+  origin: 'http://localhost:5174', // Change this to match your frontend URL
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: 'Content-Type,Authorization',
 }));

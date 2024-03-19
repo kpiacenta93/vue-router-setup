@@ -1,27 +1,23 @@
 <template>
-    
     <div class="form-container">
-        
-        <form action="mailto:piacentakyle@gmail.com" method="post" enctype="text/plain" class="form">
-            <h5 class="title">Contact Us!</h5>
+      <form @submit.prevent="submitForm" class="form">
+        <h5 class="title">Contact Us!</h5>
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required class="form">
-
+        <input type="text" id="name" v-model="name" required class="form-input">
+  
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required class="form">
-
+        <input type="email" id="email" v-model="email" required class="form-input">
+  
         <label for="subject">Subject:</label>
-        <input type="text" id="subject" name="subject" required class="form">
-
+        <input type="text" id="subject" v-model="subject" required class="form-input">
+  
         <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="4" required class="form"></textarea>
-
-        <button>submit</button>
-    </form>
+        <textarea id="message" v-model="message" rows="4" required class="form-textarea"></textarea>
+  
+        <button type="submit" v-on:click="consoleLogFormData()">Submit</button>
+      </form>
     </div>
-    
-
-</template>
+  </template>
 
 <script>
 
@@ -29,8 +25,20 @@
 export default {
     name: 'Random',
 
-    methods: {
-}
+data(){
+    return{
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+    }
+},
+
+methods: {
+        consoleLogFormData(){
+            console.log("this is name: ", this.name)
+        }
+},
 
 
 
