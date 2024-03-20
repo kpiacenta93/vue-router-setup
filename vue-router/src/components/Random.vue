@@ -57,31 +57,58 @@ methods: {
 }
 </script>
 
-<style>
-.title {
-    font-size: 3rem;
-    color: white;
+<style scoped>
+.form-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-    
-    .form{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-direction: column;
-        height: 500px;
-        width:600px;
-        border-radius: 15px;
-    }
 
-    /* .form-container{
-        border: #646cff;
-    } */
+.form {
+  display: flex;
+  flex-direction: column;
+}
 
-    button {
-        margin-top:10px;
-    }
+.title {
+  text-align: center;
+  color: #42b983;
+  margin-bottom: 20px;
+  font-size: 35px;
+}
 
+.form-input, .form-textarea {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Added for better box sizing */
+}
 
-  
+.form-input:focus, .form-textarea:focus {
+  border-color: #42b983;
+  outline: none;
+}
 
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+button[type="submit"] {
+  background-color: #42b983;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #369974;
+}
 </style>
