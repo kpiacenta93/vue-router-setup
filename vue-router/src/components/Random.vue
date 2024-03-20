@@ -2,14 +2,14 @@
     <div class="form-container">
       <form @submit.prevent="sendEmail" class="form">
         <h5 class="title">Contact Us!</h5>
-        <label for="name">Name: {{ name }}</label>
-        <input type="text" id="name" v-model="name" required class="form-input">
+        <label for="name">Name:</label>
+        <input type="text" id="name" v-model="from_name" name="from_name" required class="form-input">
   
-        <label for="email">Email: {{ email }}</label>
-        <input type="email" id="email" v-model="email" required class="form-input">
+        <label for="email">Email:</label>
+        <input type="email" id="email" v-model="from_email" name="from_email" required class="form-input">
   
-        <label for="message">Message: {{ message }}</label>
-        <textarea id="message" v-model="message" rows="4" required class="form-textarea"></textarea>
+        <label for="message">Message: </label>
+        <textarea id="message" v-model="message" rows="4" name="message" required class="form-textarea"></textarea>
   
         <button type="submit" value="Send">Submit</button>
       </form>
