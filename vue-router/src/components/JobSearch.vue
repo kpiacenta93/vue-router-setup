@@ -8,7 +8,7 @@
     <div v-if="isLoading" class="loading">Loading...</div>
     <div class="job-display" v-if="!isLoading && showJobs">
       <div class="job-list">
-        <div v-for="(job, index) in jobListings" :key="index" class="jobs">
+        <div v-for="(job, index) in jobListings" :key="index" class="jobs" :class="{ 'job-saved': isJobSaved(job) }">
           <h2> Company: {{ job.employer_name }}</h2>
           <img :src="job.employer_logo" :alt="job.employer_name + ' logo'" onerror="this.style.display='none'" class="employee-logo" />
           <p><b>Job Title :</b> {{ job.job_title }}</p>
@@ -35,6 +35,7 @@ data() {
     isLoading: false,
     jobListings: [],
     selectedJobListing: [],
+    addToJobsClicked: false, 
   };
 },
 methods: {
@@ -74,13 +75,20 @@ methods: {
 
   viewSavedJobs(job){
     const isJobAlreadySaved = this.selectedJobListing.some(savedJob => savedJob.job_id === job.job_id);
+    if(isJobAlreadySaved){
+      alert("that job has already been saved!")
+    }
     if(!isJobAlreadySaved){
       this.selectedJobListing.push(job);
       console.log("Your current Saved Job is: ", job.employer_name)
       console.log("this is the saved job array length: ", this.selectedJobListing.length)
       console.log("is this the selected job list?? ", this.selectedJobListing)
     }
-  }
+  },
+
+  isJobSaved(job) {
+    return this.selectedJobListing.some(savedJob => savedJob.job_id === job.job_id);
+  },
 }
 }
 </script>
@@ -100,6 +108,7 @@ methods: {
     border: 1px solid white;
     margin: 10px;
     padding: 5px;
+    background-color: none;
 }
 
 .input-container {
@@ -137,12 +146,19 @@ methods: {
     max-height: 800px;
     /* Set the maximum height for the job listings container */
     overflow-y: auto;
+    /* background-color: blue; */
     /* Add a vertical scrollbar when content overflows */
 }
 
 .job-list {
     padding: 10px;
     /* Add some padding to the job list container */
+    /* background-color: none; */
 }
+
+.job-saved {
+  background-color: #0fc5d623; 
+}
+
 </style>
 
