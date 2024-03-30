@@ -15,7 +15,7 @@
           <h2>Description: {{ job.job_description }}</h2>
           <a :href="job.employer_website" target="_blank">Apply</a>
           <br>
-          <button v-on:click=viewSavedJobs() v-bind="selectedJobListing">Add To Saved Jobs!</button>
+          <button v-on:click=viewSavedJobs(job)>Add To Saved Jobs!</button>
         </div>
       </div>
     </div>
@@ -72,8 +72,12 @@ methods: {
     }
   },
 
-  viewSavedJobs(){
-    console.log(this.selectedJobListing)
+  viewSavedJobs(job){
+    const isJobAlreadySaved = this.selectedJobListing.some(savedJob => savedJob.job_id === job.job_id);
+    if(!isJobAlreadySaved){
+      this.selectedJobListing.push(job);
+      console.log("Your current Saved Job is: ", job.employer_name)
+    }
   }
 }
 }
