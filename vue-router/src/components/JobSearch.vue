@@ -16,6 +16,9 @@
           <a :href="job.employer_website" target="_blank">Apply</a>
           <br>
           <button v-on:click=viewSavedJobs(job)>Add To Saved Jobs!</button>
+          <br>
+          <br>
+          <button v-if="isJobSaved(job)" v-on:click="removeSelectedJob(job)" >Remove Job From Saved Jobs!</button>
         </div>
       </div>
     </div>
@@ -36,6 +39,7 @@ data() {
     jobListings: [],
     selectedJobListing: [],
     addToJobsClicked: false, 
+    displayRemoveSavedJobButton: false, 
   };
 },
 methods: {
@@ -80,15 +84,24 @@ methods: {
     }
     if(!isJobAlreadySaved){
       this.selectedJobListing.push(job);
+      this.displayRemoveSavedJobButton = true;
       console.log("Your current Saved Job is: ", job.employer_name)
       console.log("this is the saved job array length: ", this.selectedJobListing.length)
       console.log("is this the selected job list?? ", this.selectedJobListing)
+      
     }
+    
   },
 
   isJobSaved(job) {
     return this.selectedJobListing.some(savedJob => savedJob.job_id === job.job_id);
   },
+
+  removeSelectedJob(job) {
+  this.selectedJobListing = this.selectedJobListing.filter(savedJob => savedJob.job_id !== job.job_id);
+  console.log(this.selectedJobListing.length)
+}
+
 }
 }
 </script>
