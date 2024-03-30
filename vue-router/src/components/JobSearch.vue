@@ -77,6 +77,8 @@ methods: {
     if(!isJobAlreadySaved){
       this.selectedJobListing.push(job);
       console.log("Your current Saved Job is: ", job.employer_name)
+      console.log("this is the saved job array length: ", this.selectedJobListing.length)
+      console.log("is this the selected job list?? ", this.selectedJobListing)
     }
   }
 }
