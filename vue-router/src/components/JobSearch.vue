@@ -14,6 +14,8 @@
           <p><b>Job Title :</b> {{ job.job_title }}</p>
           <h2>Description: {{ job.job_description }}</h2>
           <a :href="job.employer_website" target="_blank">Apply</a>
+          <br>
+          <button v-on:click=viewSavedJobs() v-bind="selectedJobListing">Add To Saved Jobs!</button>
         </div>
       </div>
     </div>
@@ -31,7 +33,8 @@ data() {
     page: "1", 
     showJobs: false,
     isLoading: false,
-    jobListings: []
+    jobListings: [],
+    selectedJobListing: [],
   };
 },
 methods: {
@@ -68,6 +71,10 @@ methods: {
       
     }
   },
+
+  viewSavedJobs(){
+    console.log(this.selectedJobListing)
+  }
 }
 }
 </script>

@@ -37,6 +37,7 @@ methods: {
         try {
             emailjs.sendForm(import.meta.env.VITE_VUE_EMAIL_JS_SERVICE_ID, import.meta.env.VITE_VUE_EMAIL_JS_TEMPLATE_ID, e.target, import.meta.env.VITE_VUE_EMAIL_JS_USER_ID)
             .then((result) => {
+                alert("email has been sent successfully! Congrats!")
                 console.log('Email successfully sent!', result.text);
             }, (error) => {
                 console.log('Failed to send email.', error.text);
