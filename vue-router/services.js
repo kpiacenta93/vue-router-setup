@@ -26,6 +26,6 @@ export default {
       },
 
       updateStatusAppById(id, newStatus){
-        return entry.put(`/UpdateStatusById/${id}`,newStatus)
+        return entry.post(`/UpdateStatusById/${id}`,newStatus)
       }
 }
