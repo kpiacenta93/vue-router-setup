@@ -28,7 +28,7 @@
         </div>
       </div>
     </div>
-    <button v-on:click="fetchData"> this is where the title goes: {{ title }}</button>
+    <button v-on:click="fetchData"> View Saved Job Data! {{ title }}</button>
   </template>
   
   <script>

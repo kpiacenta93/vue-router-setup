@@ -5,6 +5,8 @@
       <!-- <input type="text" placeholder="Location..." class="SearchJobs" v-model="location"> -->
       <button class="button-search" @click="fetchJobs">Enter</button>
       <h1 class="savedJobs">Saved Jobs: {{ savedJobsCount}}</h1>
+      <br>
+      <h1>Saved Job Data: {{ selectedJobListing }}</h1>
     </div>
     <div v-if="isLoading" class="loading">Loading...</div>
     <div class="job-display" v-if="!isLoading && showJobs">
@@ -82,6 +84,10 @@ methods: {
   viewSavedJobs(job){
     const isJobAlreadySaved = this.selectedJobListing.some(savedJob => savedJob.job_id === job.job_id);
     this.savedJobsCount++
+    localStorage.setItem("selectedJobListings", JSON.stringify(this.selectedJobListing))
+    const selectedJobListingVariable = JSON.parse(localStorage.getItem("selectedJobListings"))
+    console.log(selectedJobListingVariable)
+    console.log("This is the local storage job name: ", localStorage.getItem("jobName"))
     if(isJobAlreadySaved){
       alert("that job has already been saved!")
     }
