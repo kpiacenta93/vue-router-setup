@@ -25,7 +25,7 @@ export default {
         return entry.get(`/getAppById/${id}`, id)
       },
 
-      updateStatusAppById(id, newStatus){
-        return entry.post(`/UpdateStatusById/${id}`,newStatus)
+      updateStatusAppById(id, requestData){
+        return entry.post(`/UpdateStatusById/${id}`,requestData)
       }
 }

@@ -151,9 +151,15 @@ export default {
         });
     },
 
-    updateAppStatusById(id, newStatus) {
+    updateAppStatusById(tableName, columnName, value, id) {
 
-      services.updateStatusAppById(id, newStatus)
+      const requestData = {
+        table: tableName,
+        column: columnName,
+        value: value
+      }
+
+      services.updateStatusAppById(id, requestData)
         .then(response => {
           console.log(this.selectedApplication.application_status = response.data)
           console.log("this is the response from update status", this.selectedApplication.application_status)

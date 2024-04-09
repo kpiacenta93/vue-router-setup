@@ -4,6 +4,7 @@
       <input type="text" placeholder="Search Jobs By Title and Location..." class="SearchJobs" v-model="query"> <!-- Ensure you have a model for 'query' -->
       <!-- <input type="text" placeholder="Location..." class="SearchJobs" v-model="location"> -->
       <button class="button-search" @click="fetchJobs">Enter</button>
+      <h1 class="savedJobs">Saved Jobs: {{ savedJobsCount}}</h1>
     </div>
     <div v-if="isLoading" class="loading">Loading...</div>
     <div class="job-display" v-if="!isLoading && showJobs">
@@ -40,6 +41,7 @@ data() {
     selectedJobListing: [],
     addToJobsClicked: false, 
     displayRemoveSavedJobButton: false, 
+    savedJobsCount: 0,
   };
 },
 methods: {
@@ -79,6 +81,7 @@ methods: {
 
   viewSavedJobs(job){
     const isJobAlreadySaved = this.selectedJobListing.some(savedJob => savedJob.job_id === job.job_id);
+    this.savedJobsCount++
     if(isJobAlreadySaved){
       alert("that job has already been saved!")
     }
@@ -100,6 +103,7 @@ methods: {
   removeSelectedJob(job) {
   this.selectedJobListing = this.selectedJobListing.filter(savedJob => savedJob.job_id !== job.job_id);
   console.log(this.selectedJobListing.length)
+  this.savedJobsCount--;
 }
 
 }
@@ -171,6 +175,10 @@ methods: {
 
 .job-saved {
   background-color: #0fc5d623; 
+}
+
+.savedJobs {
+  margin-left: 10px;
 }
 
 </style>

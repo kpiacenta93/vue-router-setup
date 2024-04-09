@@ -14,6 +14,9 @@
         <button type="submit" value="Send">Submit</button>
       </form>
     </div>
+    <div class="kyles-div">
+        <h1> -></h1>
+    </div>
   </template>
 
 <script>
@@ -111,5 +114,16 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
   background-color: #369974;
+}
+
+.kyles-div {
+    display: flex;
+    border: 1px solid white;
+    margin-top: 15px;
+    border-radius: 50%;
+    height: 500px;
+    width: 500px;
+    justify-content: center;
+    align-items: center;
 }
 </style>

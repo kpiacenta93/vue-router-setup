@@ -110,7 +110,7 @@ export const updateRecordById = (tableName, columnName, value, id, callback) => 
 
   console.log(`Updating record in ${tableName}:`, `ID:`, id, `${columnName}:`, value);
 
-  pool.query(queryString, [id, value])
+  pool.query(queryString, [tableName, columnName, value, id])
     .then((res) => {
       console.log(`Record updated successfully in ${tableName}`);
       console.log("Rows affected: ", res.rowCount);
