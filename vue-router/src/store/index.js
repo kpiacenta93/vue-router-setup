@@ -6,7 +6,7 @@ export default function createStore(currentToken, currentUser) {
       state: {
         token: currentToken || '',
         user: currentUser || {},
-        
+        savedJobs: []
       },
       mutations: {
         SET_AUTH_TOKEN(state, token) {

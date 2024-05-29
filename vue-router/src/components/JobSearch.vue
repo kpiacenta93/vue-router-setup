@@ -84,16 +84,17 @@ methods: {
   viewSavedJobs(job){
     const isJobAlreadySaved = this.selectedJobListing.some(savedJob => savedJob.job_id === job.job_id);
     this.savedJobsCount++
-    localStorage.setItem("selectedJobListings", JSON.stringify(this.selectedJobListing))
-    const selectedJobListingVariable = JSON.parse(localStorage.getItem("selectedJobListings"))
-    console.log(selectedJobListingVariable)
-    console.log("This is the local storage job name: ", localStorage.getItem("jobName"))
+  
+    // const selectedJobListingVariable = JSON.parse(localStorage.getItem("selectedJobListings"))
+    // console.log(selectedJobListingVariable)
+    // console.log("This is the local storage job name: ", localStorage.getItem("jobName"))
     if(isJobAlreadySaved){
       alert("that job has already been saved!")
     }
     if(!isJobAlreadySaved){
       this.selectedJobListing.push(job);
       this.displayRemoveSavedJobButton = true;
+      localStorage.setItem("selectedJobListings", JSON.stringify(this.selectedJobListing))
       console.log("Your current Saved Job is: ", job.employer_name)
       console.log("this is the saved job array length: ", this.selectedJobListing.length)
       console.log("is this the selected job list?? ", this.selectedJobListing)
@@ -110,6 +111,14 @@ methods: {
   this.selectedJobListing = this.selectedJobListing.filter(savedJob => savedJob.job_id !== job.job_id);
   console.log(this.selectedJobListing.length)
   this.savedJobsCount--;
+},
+
+created(){
+  const savedJobs = localStorage.getItem("selectedJobListings")
+
+  if(savedJobs){
+    this.savedJobs = JSON.parse(savedJobs);
+  }
 }
 
 }

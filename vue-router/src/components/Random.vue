@@ -14,9 +14,7 @@
         <button type="submit" value="Send">Submit</button>
       </form>
     </div>
-    <div class="kyles-div">
-        <h1> -></h1>
-    </div>
+
   </template>
 
 <script>
