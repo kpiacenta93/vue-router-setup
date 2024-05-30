@@ -1,12 +1,10 @@
 <template>
   <div class="input-container">
+    <h1 class="title">Search Open Jobs By Title & Location: </h1>
     <div class="input-wrapper">
       <input type="text" placeholder="Search Jobs By Title and Location..." class="SearchJobs" v-model="query"> <!-- Ensure you have a model for 'query' -->
       <!-- <input type="text" placeholder="Location..." class="SearchJobs" v-model="location"> -->
       <button class="button-search" @click="fetchJobs">Enter</button>
-      <h1 class="savedJobs">Saved Jobs: {{ savedJobsCount}}</h1>
-      <br>
-      <h1>Saved Job Data: {{ selectedJobListing }}</h1>
     </div>
     <div v-if="isLoading" class="loading">Loading...</div>
     <div class="job-display" v-if="!isLoading && showJobs">
@@ -195,6 +193,9 @@ created(){
 .savedJobs {
   margin-left: 10px;
 }
-
+.title {
+  color: rgb(57, 198, 236);
+  font-family: monospace;
+}
 </style>
 

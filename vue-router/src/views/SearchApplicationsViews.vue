@@ -9,6 +9,7 @@
         <input type="text" placeholder="Search Job By Text..." v-model="searchText">
         <div class="button">
           <button @click="filterApplications()">Submit</button>
+          <button @click="deleteSearch()">Delete search</button>
           <!-- <button @click="checking()">hey yo</button> -->
         </div>
       </div>
@@ -70,6 +71,12 @@ import services from '../../services';
 
 export default {
   methods: {
+
+    deleteSearch(){
+     this.searchText = '';
+     this.filterApplications()
+    },
+
     toggleUpdateNotes() {
       this.updateNotes = !this.updateNotes;
     },
