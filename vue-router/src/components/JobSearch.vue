@@ -14,6 +14,18 @@
           <img :src="job.employer_logo" :alt="job.employer_name + ' logo'" onerror="this.style.display='none'" class="employee-logo" />
           <p><b>Job Title :</b> {{ job.job_title }}</p>
           <h2>Description: {{ job.job_description }}</h2>
+          <br>
+          <h4>Apply Links Below:</h4>
+          <div class="apply_links" v-if="job.apply_options && Array.isArray(job.apply_options)">
+            <!-- <h2>Apply Links:</h2> -->
+         
+          <!-- <ul> -->
+      
+            <li v-for="option in job.apply_options" :key="option.apply_link">
+              <a :href="option.apply_link" target="_blank">{{ option.publisher }}</a>
+            </li>
+          <!-- </ul> -->
+          </div>
           <a :href="job.employer_website" target="_blank">Apply</a>
           <br>
           <button v-on:click=viewSavedJobs(job)>Add To Saved Jobs!</button>
@@ -65,6 +77,11 @@ methods: {
       const response = await axios.request(options);
       this.jobListings = response.data.data; 
       console.log("This is the job data: ",this.jobListings)
+      
+      this.jobListings.forEach(job => {
+        console.table(job.job_id)
+        console.table(job.job_employment_type)
+      })
       this.showJobs = true;
     } catch (error) {
       console.error(error);
@@ -196,6 +213,11 @@ created(){
 .title {
   color: rgb(57, 198, 236);
   font-family: monospace;
+}
+
+.apply_links {
+  display: flex;
+  justify-content: center;
 }
 </style>
 
